@@ -1,20 +1,16 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
+import java.util.Scanner;
+
 public class Player {
 
     private String name;
-
-    public Player(String name) {
-        this.name = name;
-    }
 
     public boolean checkEdges() {
         return true;
     }
 
-    public void move() {
-
-    }
+    public void move() {}
 
     public boolean isSpot() {
         return true;
@@ -24,8 +20,11 @@ public class Player {
         return name;
     }
 
-    public void setName(String newName) {
-        this.name = newName;
+    public void setName() {
+        
+        System.out.print("Choose a name: ");
+        Scanner scanner = new Scanner(System. in);
+        this.name = scanner. nextLine();
     }
 
 }
