@@ -28,3 +28,6 @@ hs_err_pid*
 .xml
 out/
 .idea/
+
+# Exceptions
+!simplegraphics.jar
