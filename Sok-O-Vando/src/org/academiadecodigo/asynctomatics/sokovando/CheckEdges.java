@@ -19,7 +19,7 @@ public class CheckEdges {
         for (Wall wall : wallContainer) {
 
             int wallEndPointX = wall.x + wall.width;
-            int wallEndPointY = wall.y + wall.heigth;
+            int wallEndPointY = wall.y + wall.height;
 
             if ((
                 ((wall.x <= element.x) && (wallEndPointX >= element.x)) &&
