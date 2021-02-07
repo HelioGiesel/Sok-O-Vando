@@ -17,10 +17,10 @@ public class KeyboardListener implements KeyboardHandler {
         keyboard.addEventListener(upArrowPressed);
 
         // Event of releasing the UP arrow
-        KeyboardEvent upArrowR = new KeyboardEvent();
-        upArrowR.setKey(KeyboardEvent.KEY_UP);
-        upArrowR.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-        keyboard.addEventListener(upArrowR);
+        KeyboardEvent upArrowReleased = new KeyboardEvent();
+        upArrowReleased.setKey(KeyboardEvent.KEY_UP);
+        upArrowReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(upArrowReleased);
 
         // Event of pressing the DOWN arrow
         KeyboardEvent downArrowPressed = new KeyboardEvent();
@@ -65,19 +65,19 @@ public class KeyboardListener implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == 38) { System.out.println("UP KEY    : Pressed"); }
         if (keyboardEvent.getKey() == 40) { System.out.println("DOWN KEY  : Pressed"); }
-        if (keyboardEvent.getKey() == 39) { System.out.println("RIGHT KEY : Pressed"); }
         if (keyboardEvent.getKey() == 37) { System.out.println("LEFT KEY  : Pressed"); }
-
+        if (keyboardEvent.getKey() == 39) { System.out.println("RIGHT KEY : Pressed"); }
     }
 
+    
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == 38) { System.out.println("UP KEY    : Released"); }
         if (keyboardEvent.getKey() == 40) { System.out.println("DOWN KEY  : Released"); }
-        if (keyboardEvent.getKey() == 39) { System.out.println("RIGHT KEY : Released"); }
         if (keyboardEvent.getKey() == 37) { System.out.println("LEFT KEY  : Released"); }
-
+        if (keyboardEvent.getKey() == 39) { System.out.println("RIGHT KEY : Released"); }
     }
+
 }
 
 
