@@ -1,4 +1,4 @@
-package org.academiadecodigo.asynctomatics.sokovando;
+/*package org.academiadecodigo.asynctomatics.sokovando;
 
 public class CheckEdges {
     public static boolean box(Box movingBox){
@@ -44,3 +44,4 @@ public class CheckEdges {
         return false;
     }
 }
+*/

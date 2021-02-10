@@ -1,4 +1,4 @@
-package org.academiadecodigo.asynctomatics.sokovando;
+/*package org.academiadecodigo.asynctomatics.sokovando;
 
 import java.util.Scanner;
 
@@ -31,3 +31,4 @@ public class Player {
 
 
 }
+*/

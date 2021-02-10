@@ -13,5 +13,7 @@ public class Main {
         test.setColor(Color.RED);
         test.fill();
 
+        Grid g = new Grid(200,1400, 1400);
+
     }
 }

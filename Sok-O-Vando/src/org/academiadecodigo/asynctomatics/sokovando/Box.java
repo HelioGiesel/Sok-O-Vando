@@ -1,4 +1,4 @@
-package org.academiadecodigo.asynctomatics.sokovando;
+/*package org.academiadecodigo.asynctomatics.sokovando;
 
 public class Box{
     private Position pos;
@@ -15,3 +15,4 @@ public class Box{
         return false;
     }
 }
+*/
