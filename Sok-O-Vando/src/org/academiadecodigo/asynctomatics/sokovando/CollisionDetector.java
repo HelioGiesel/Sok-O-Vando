@@ -21,10 +21,7 @@ public class CollisionDetector {
                     }
                 }
             }
-
         }
-
         return false;
     }
-
 }
