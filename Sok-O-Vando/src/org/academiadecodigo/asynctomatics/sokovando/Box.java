@@ -47,13 +47,13 @@ public class Box extends Position {
 
         ghostPosition.boxShape.delete();
 
-        if (canMove) this.move(direction);
+        if (canMove) this.move(direction, level);
 
         return canMove;
 
     }
 
-    public void move(Directions direction){
+    public void move(Directions direction, Position[] level){
         switch (direction) {
             case UP:
                 this.setY(getY() - CELLSIZE);
@@ -72,6 +72,8 @@ public class Box extends Position {
         boxShape = new Rectangle(getX(),getY(),CELLSIZE,CELLSIZE);
         boxShape.setColor(Color.YELLOW);
         boxShape.fill();
+
+        CollisionDetector.checkSpots(level);
     }
 
 }

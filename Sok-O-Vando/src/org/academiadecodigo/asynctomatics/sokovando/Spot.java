@@ -7,7 +7,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Spot extends Position {
 
     Picture spotShape;
-    boolean boxOnSpot;
 
     Spot(int x, int y) {
         super(x, y);
