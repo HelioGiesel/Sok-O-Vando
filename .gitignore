@@ -25,5 +25,9 @@ hs_err_pid*
 # Miscellaneous
 .DS_Store
 *.iml
+.xml
 out/
 .idea/
+
+# Exceptions
+!simplegraphics.jar
