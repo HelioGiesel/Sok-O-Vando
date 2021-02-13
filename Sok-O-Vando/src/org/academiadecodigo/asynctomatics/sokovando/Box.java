@@ -1,3 +1,4 @@
+
 package org.academiadecodigo.asynctomatics.sokovando;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;

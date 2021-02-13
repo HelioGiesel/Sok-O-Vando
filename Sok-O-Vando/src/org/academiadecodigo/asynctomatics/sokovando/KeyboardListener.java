@@ -4,7 +4,6 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class KeyboardListener implements KeyboardHandler {
 
@@ -93,17 +92,13 @@ public class KeyboardListener implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-       /* if (keyboardEvent.getKey() == 38) {  }
-        if (keyboardEvent.getKey() == 40) {   }
-        if (keyboardEvent.getKey() == 37) {   }
-        if (keyboardEvent.getKey() == 39) {   }
-        if (keyboardEvent.getKey() == 82) {   }
-        if (keyboardEvent.getKey() == 32) {   }*/
+
     }
 
     
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
+
         if (keyboardEvent.getKey() == 38) {
             game.movePlayer(Directions.UP);
         }
@@ -123,8 +118,7 @@ public class KeyboardListener implements KeyboardHandler {
 
         if (keyboardEvent.getKey() == 32) {
             System.exit(1);
-    }   }
+        }
+    }
 }
-
-
 

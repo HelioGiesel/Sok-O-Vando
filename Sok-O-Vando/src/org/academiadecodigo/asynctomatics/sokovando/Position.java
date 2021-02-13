@@ -1,6 +1,7 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
 public abstract class Position {
+
     public static final int CELLSIZE = 50;
     private int x;
     private int y;
@@ -27,4 +28,5 @@ public abstract class Position {
     }
 
     public abstract void deleteShape();
+
 }

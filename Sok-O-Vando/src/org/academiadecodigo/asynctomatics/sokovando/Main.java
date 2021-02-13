@@ -1,7 +1,5 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Main {
 
@@ -9,7 +7,6 @@ public class Main {
 
         Game game = new Game();
         game.init();
-
 
     }
 }
