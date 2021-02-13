@@ -153,10 +153,11 @@ public class Game {
 
     public void initLevel2(){
 
-        level2 = new Position[100];
+        level2 = new Position[63];
         player = new Player(250,250);
         keyboard.setup(player, level2);
 
+        // Top walls
         level2[0] = new Wall(0, 0);
         level2[1] = new Wall(50, 0);
         level2[2] = new Wall(100, 0);
@@ -167,72 +168,74 @@ public class Game {
         level2[7] = new Wall(350, 0);
         level2[8] = new Wall(400, 0);
         level2[9] = new Wall(450, 0);
-        level2[58] = new Wall (500, 0);
+        level2[10] = new Wall (500, 0);
 
-        level2[10] = new Wall(500, 50);
-        level2[11] = new Wall(500, 100);
-        level2[12] = new Wall(500, 150);
-        level2[13] = new Wall(500, 200);
-        level2[14] = new Wall(500, 250);
-        level2[15] = new Wall(500, 300);
-        level2[16] = new Wall(500, 350);
-        level2[17] = new Wall(500, 400);
-        level2[18] = new Wall(500, 450);
-        level2[59] = new Wall(500,500);
+        // Right walls
+        level2[11] = new Wall(500, 50);
+        level2[12] = new Wall(500, 100);
+        level2[13] = new Wall(500, 150);
+        level2[14] = new Wall(500, 200);
+        level2[15] = new Wall(500, 250);
+        level2[16] = new Wall(500, 300);
+        level2[17] = new Wall(500, 350);
+        level2[18] = new Wall(500, 400);
+        level2[19] = new Wall(500, 450);
+        level2[20] = new Wall(500,500);
 
-        level2[19] = new Wall(0, 50);
-        level2[20] = new Wall(0, 100);
-        level2[21] = new Wall(0, 150);
-        level2[22] = new Wall(0, 200);
-        level2[23] = new Wall(0, 250);
-        level2[24] = new Wall(0, 300);
-        level2[25] = new Wall(0, 350);
-        level2[26] = new Wall(0, 400);
+        // Left walls
+        level2[21] = new Wall(0, 50);
+        level2[22] = new Wall(0, 100);
+        level2[23] = new Wall(0, 150);
+        level2[24] = new Wall(0, 200);
+        level2[25] = new Wall(0, 250);
+        level2[26] = new Wall(0, 300);
         level2[27] = new Wall(0, 350);
         level2[28] = new Wall(0, 400);
-        level2[29] = new Wall(0, 450);
-        level2[60] = new Wall(0,500);
+        level2[29] = new Wall(0, 350);
+        level2[30] = new Wall(0, 400);
+        level2[31] = new Wall(0, 450);
+        level2[32] = new Wall(0,500);
 
-        level2[30] = new Wall(50, 500);
-        level2[31] = new Wall(100, 500);
-        level2[32] = new Wall(150, 500);
-        level2[33] = new Wall(200, 500);
-        level2[34] = new Wall(200, 500);
-        level2[35] = new Wall(250, 500);
-        level2[36] = new Wall(300, 500);
-        level2[37] = new Wall(350, 500);
-        level2[38] = new Wall(400, 500);
-        level2[39] = new Wall(450, 500);
+        // Bottom walls
+        level2[33] = new Wall(50, 500);
+        level2[34] = new Wall(100, 500);
+        level2[35] = new Wall(150, 500);
+        level2[36] = new Wall(200, 500);
+        level2[37] = new Wall(200, 500);
+        level2[38] = new Wall(250, 500);
+        level2[39] = new Wall(300, 500);
+        level2[40] = new Wall(350, 500);
+        level2[41] = new Wall(400, 500);
+        level2[42] = new Wall(450, 500);
 
         // Boxes
-        level2[40] = new Box (200,200);
-        level2[41] = new Box (250,200);
-        level2[42] = new Box (300,200);
-        level2[53] = new Box (200,250);
-        level2[54] = new Box (300,250);
-        level2[55] = new Box (200,300);
-        level2[56] = new Box (250,300);
-        level2[57] = new Box (300,300);
+        level2[43] = new Box (200,200);
+        level2[44] = new Box (250,200);
+        level2[45] = new Box (300,200);
+        level2[46] = new Box (200,250);
+        level2[47] = new Box (300,250);
+        level2[48] = new Box (200,300);
+        level2[49] = new Box (250,300);
+        level2[50] = new Box (300,300);
 
         // Spots
-        level2[43] = new Spot (50,50);
-        level2[44] = new Spot (450,50);
-        level2[45] = new Spot (450,450);
-        level2[46] = new Spot (50,450);
-        level2[47] = new Spot (150,200);
-        level2[48] = new Spot (350,200);
-        level2[61] = new Spot(150, 300);
-        level2[62] = new Spot(350, 300);
-
+        level2[51] = new Spot (50,50);
+        level2[52] = new Spot (450,50);
+        level2[53] = new Spot (450,450);
+        level2[54] = new Spot (50,450);
+        level2[55] = new Spot (150,200);
+        level2[56] = new Spot (350,200);
+        level2[57] = new Spot(150, 300);
+        level2[58] = new Spot(350, 300);
 
         // Inside walls
-        level2[49] = new Wall(150, 150);
-        level2[50] = new Wall(350, 150);
-        level2[51] = new Wall(350, 350);
-        level2[52] = new Wall(150, 350);
-
+        level2[59] = new Wall(150, 150);
+        level2[60] = new Wall(350, 150);
+        level2[61] = new Wall(350, 350);
+        level2[62] = new Wall(150, 350);
 
     }
+
 
     public void initLevel3(){
 
