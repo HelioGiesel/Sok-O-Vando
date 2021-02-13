@@ -239,10 +239,11 @@ public class Game {
 
     public void initLevel3(){
 
-        level3 = new Position[100];
+        level3 = new Position[84];
         player = new Player(300,50);
         keyboard.setup(player, level3);
 
+        // Top walls
         level3[0] = new Wall(0, 0);
         level3[1] = new Wall(50, 0);
         level3[2] = new Wall(100, 0);
@@ -253,95 +254,92 @@ public class Game {
         level3[7] = new Wall(350, 0);
         level3[8] = new Wall(400, 0);
         level3[9] = new Wall(450, 0);
-        level3[58] = new Wall (500, 0);
+        level3[10] = new Wall (500, 0);
 
-        level3[10] = new Wall(500, 50);
-        level3[11] = new Wall(500, 100);
-        level3[12] = new Wall(500, 150);
-        level3[13] = new Wall(500, 200);
-        level3[14] = new Wall(500, 250);
-        level3[15] = new Wall(500, 300);
-        level3[16] = new Wall(500, 350);
-        level3[17] = new Wall(500, 400);
-        level3[18] = new Wall(500, 450);
-        level3[59] = new Wall(500,500);
+        // Right walls
+        level3[11] = new Wall(500, 50);
+        level3[12] = new Wall(500, 100);
+        level3[13] = new Wall(500, 150);
+        level3[14] = new Wall(500, 200);
+        level3[15] = new Wall(500, 250);
+        level3[16] = new Wall(500, 300);
+        level3[17] = new Wall(500, 350);
+        level3[18] = new Wall(500, 400);
+        level3[19] = new Wall(500, 450);
+        level3[20] = new Wall(500,500);
 
-        level3[19] = new Wall(0, 50);
-        level3[20] = new Wall(0, 100);
-        level3[21] = new Wall(0, 150);
-        level3[22] = new Wall(0, 200);
-        level3[23] = new Wall(0, 250);
-        level3[24] = new Wall(0, 300);
-        level3[25] = new Wall(0, 350);
-        level3[26] = new Wall(0, 400);
+        // Left walls
+        level3[21] = new Wall(0, 50);
+        level3[22] = new Wall(0, 100);
+        level3[23] = new Wall(0, 150);
+        level3[24] = new Wall(0, 200);
+        level3[25] = new Wall(0, 250);
+        level3[26] = new Wall(0, 300);
         level3[27] = new Wall(0, 350);
         level3[28] = new Wall(0, 400);
-        level3[29] = new Wall(0, 450);
-        level3[60] = new Wall(0,500);
+        level3[29] = new Wall(0, 350);
+        level3[30] = new Wall(0, 400);
+        level3[31] = new Wall(0, 450);
+        level3[32] = new Wall(0,500);
 
-        level3[30] = new Wall(50, 500);
-        level3[31] = new Wall(100, 500);
-        level3[32] = new Wall(150, 500);
-        level3[33] = new Wall(200, 500);
-        level3[34] = new Wall(200, 500);
-        level3[35] = new Wall(250, 500);
-        level3[36] = new Wall(300, 500);
-        level3[37] = new Wall(350, 500);
-        level3[38] = new Wall(400, 500);
-        level3[39] = new Wall(450, 500);
-
-
+        // Right walls
+        level3[33] = new Wall(50, 500);
+        level3[34] = new Wall(100, 500);
+        level3[35] = new Wall(150, 500);
+        level3[36] = new Wall(200, 500);
+        level3[37] = new Wall(200, 500);
+        level3[38] = new Wall(250, 500);
+        level3[39] = new Wall(300, 500);
+        level3[40] = new Wall(350, 500);
+        level3[41] = new Wall(400, 500);
+        level3[42] = new Wall(450, 500);
 
         // Boxes
-        level3[40] = new Box (300,150);
-        level3[41] = new Box (250,100);
-        level3[42] = new Box (200,100);
-        level3[53] = new Box (300,250);
-
+        level3[43] = new Box (300,150);
+        level3[44] = new Box (250,100);
+        level3[45] = new Box (200,100);
+        level3[46] = new Box (300,250);
 
         // Spots
-        level3[43] = new Spot (200,450);
-        level3[44] = new Spot (250,450);
-        level3[45] = new Spot (200,400);
-        level3[46] = new Spot (150,250);
-
-
+        level3[47] = new Spot (200,450);
+        level3[48] = new Spot (250,450);
+        level3[49] = new Spot (200,400);
+        level3[50] = new Spot (150,250);
 
         // Inside walls
-        level3[50] = new Wall(50, 200);
-        level3[51] = new Wall(50, 250);
-        level3[52] = new Wall(50, 300);
-        level3[63] = new Wall(50, 350);
-        level3[64] = new Wall(50, 400);
-        level3[65] = new Wall(50, 450);
-        level3[66] = new Wall(100, 250);
-        level3[67] = new Wall(100, 300);
-        level3[49] = new Wall(100, 350);
-        level3[68] = new Wall(100, 400);
-        level3[69] = new Wall(100, 450);
-        level3[70] = new Wall(150, 300);
-        level3[71] = new Wall(150, 350);
-        level3[72] = new Wall(150, 400);
-        level3[73] = new Wall(150, 450);
-        level3[74] = new Wall(450, 200);
-        level3[75] = new Wall(450, 250);
-        level3[76] = new Wall(450, 300);
-        level3[77] = new Wall(450, 350);
-        level3[78] = new Wall(450, 400);
-        level3[79] = new Wall(450, 450);
-        level3[80] = new Wall(400, 250);
-        level3[81] = new Wall(400, 300);
-        level3[82] = new Wall(400, 350);
-        level3[83] = new Wall(400, 400);
-        level3[84] = new Wall(400, 450);
-        level3[85] = new Wall(350, 300);
-        level3[86] = new Wall(350, 350);
-        level3[87] = new Wall(350, 400);
-        level3[88] = new Wall(350, 450);
-        level3[89] = new Wall(300, 100);
-        level3[90] = new Wall(350, 100);
-        level3[91] = new Wall(200, 150);
-
+        level3[51] = new Wall(50, 200);
+        level3[52] = new Wall(50, 250);
+        level3[53] = new Wall(50, 300);
+        level3[54] = new Wall(50, 350);
+        level3[55] = new Wall(50, 400);
+        level3[56] = new Wall(50, 450);
+        level3[57] = new Wall(100, 250);
+        level3[58] = new Wall(100, 300);
+        level3[59] = new Wall(100, 350);
+        level3[60] = new Wall(100, 400);
+        level3[61] = new Wall(100, 450);
+        level3[62] = new Wall(150, 300);
+        level3[63] = new Wall(150, 350);
+        level3[64] = new Wall(150, 400);
+        level3[65] = new Wall(150, 450);
+        level3[66] = new Wall(450, 200);
+        level3[67] = new Wall(450, 250);
+        level3[68] = new Wall(450, 300);
+        level3[69] = new Wall(450, 350);
+        level3[70] = new Wall(450, 400);
+        level3[71] = new Wall(450, 450);
+        level3[72] = new Wall(400, 250);
+        level3[73] = new Wall(400, 300);
+        level3[74] = new Wall(400, 350);
+        level3[75] = new Wall(400, 400);
+        level3[76] = new Wall(400, 450);
+        level3[77] = new Wall(350, 300);
+        level3[78] = new Wall(350, 350);
+        level3[79] = new Wall(350, 400);
+        level3[80] = new Wall(350, 450);
+        level3[81] = new Wall(300, 100);
+        level3[82] = new Wall(350, 100);
+        level3[83] = new Wall(200, 150);
 
     }
 
