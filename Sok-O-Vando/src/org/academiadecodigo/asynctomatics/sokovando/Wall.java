@@ -2,22 +2,22 @@ package org.academiadecodigo.asynctomatics.sokovando;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Wall extends Position {
 
-    Rectangle wallShape;
+    Picture wallShape;
 
     Wall(int x, int y){
         super(x, y);
 
-        wallShape = new Rectangle(x, y, CELLSIZE, CELLSIZE);
+        wallShape = new Picture(x, y, "resources/wall_Icon.png");
 
     }
 
     public void drawIcon(){
 
-        wallShape.setColor(Color.DARK_GRAY);
-        wallShape.fill();
+        wallShape.draw();
     }
 
     @Override

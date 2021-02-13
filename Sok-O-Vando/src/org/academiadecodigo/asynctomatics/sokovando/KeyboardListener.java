@@ -10,6 +10,7 @@ public class KeyboardListener implements KeyboardHandler {
 
     Player player;
     Position[] level;
+    Game game;
 
     public void setup(Player player, Position[] level1) {
 
@@ -66,6 +67,30 @@ public class KeyboardListener implements KeyboardHandler {
         rightArrowReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboard.addEventListener(rightArrowReleased);
 
+        // Event of pressing the SPACE key
+        KeyboardEvent startGamePressed = new KeyboardEvent();
+        startGamePressed.setKey(KeyboardEvent.KEY_SPACE);
+        startGamePressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(startGamePressed);
+
+        // Event of releasing the SPACE key
+        KeyboardEvent startGameReleased = new KeyboardEvent();
+        startGameReleased.setKey(KeyboardEvent.KEY_SPACE);
+        startGameReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(startGameReleased);
+
+        // Event of pressing the 'R' key
+        KeyboardEvent restartLevelPressed = new KeyboardEvent();
+        restartLevelPressed.setKey(KeyboardEvent.KEY_R);
+        restartLevelPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(restartLevelPressed);
+
+        // Event of releasing the 'R' key
+        KeyboardEvent restartLevelReleased = new KeyboardEvent();
+        restartLevelReleased.setKey(KeyboardEvent.KEY_R);
+        restartLevelReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(restartLevelReleased);
+
     }
 
 
@@ -75,6 +100,8 @@ public class KeyboardListener implements KeyboardHandler {
         if (keyboardEvent.getKey() == 40) {   }
         if (keyboardEvent.getKey() == 37) {   }
         if (keyboardEvent.getKey() == 39) {   }
+        if (keyboardEvent.getKey() == 82) {   }
+        if (keyboardEvent.getKey() == 32) {   }
     }
 
     
@@ -104,8 +131,12 @@ public class KeyboardListener implements KeyboardHandler {
             player.playerShape = player.getPlayerRightIcon(player.getX(), player.getY());
             player.playerShape.draw();
         }
-    }
+        if (keyboardEvent.getKey() == 82) {
 
+        }
+        if (keyboardEvent.getKey() == 32) {
+            System.exit(1);
+    }   }
 }
 
 

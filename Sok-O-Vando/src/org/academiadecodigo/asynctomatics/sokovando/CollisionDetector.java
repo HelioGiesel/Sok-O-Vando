@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class CollisionDetector {
 
-    public static boolean isColliding(Position[] gameObjects, Position movingObject, Directions direction){
+    public static boolean isColliding(Position[] gameObjects, Position movingObject, Directions direction) {
 
         for (Position obstacle : gameObjects) {
 
@@ -27,14 +27,14 @@ public class CollisionDetector {
         return false;
     }
 
-    public static boolean checkSpots(Position[] gameObjects) {
+    public static void checkSpots(Position[] gameObjects) {
 
         //run through array, collect spots and boxes, check if they are on same position
 
         LinkedList<Position> spotList = new LinkedList<>();
         LinkedList<Position> boxList = new LinkedList<>();
 
-        for (Position element : gameObjects){
+        for (Position element : gameObjects) {
 
             if (element instanceof Box) boxList.add(element);
             if (element instanceof Spot) spotList.add(element);
@@ -49,14 +49,13 @@ public class CollisionDetector {
             }
         }
 
-        if ((validation == spotList.size()) && (validation != 0)){
+        if ((validation == spotList.size()) && (validation != 0)) {
             System.out.println("Ganhou modafoca!!!!!");
-            return true;
 
-        };
+        }
 
-        return false;
     }
+
 
 }
 

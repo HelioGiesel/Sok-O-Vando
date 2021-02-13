@@ -7,8 +7,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Player extends Position {
 
     Picture playerShape;
-
-
     Position[] level;
 
 
@@ -21,12 +19,12 @@ public class Player extends Position {
         this.playerShape = playerShape;
     }
 
-    @Override
+
     public void drawIcon(){
         playerShape.draw();
     }
 
-    @Override
+
     public void deleteIcon() {
         playerShape.delete();
     }
@@ -96,10 +94,14 @@ public class Player extends Position {
                 break;
         }
 
-        playerShape.delete();
+        deleteIcon();
         playerShape = new Picture(getX(),getY(),"resources/playerDownIcon.png");
-        playerShape.draw();
+        drawIcon();
 
        // System.out.printf(super.getX() + " x and y " + getY());
+    }
+
+    public void resetPos(){
+
     }
 }

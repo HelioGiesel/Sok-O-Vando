@@ -6,21 +6,19 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Box extends Position {
 
-    Rectangle boxShape;
-    Picture icon;
+    Picture boxShape;
 
 
     public Box(int x, int y){
         super(x, y);
 
-        boxShape = new Rectangle(x, y, CELLSIZE, CELLSIZE);
+        boxShape = new Picture(x, y,"resources/jsIcon.png");
 
     }
 
     @Override
     public void drawIcon() {
-        boxShape.setColor(Color.YELLOW);
-        boxShape.fill();
+        boxShape.draw();
     }
 
     @Override
@@ -76,12 +74,11 @@ public class Box extends Position {
                 this.setX(getX() + CELLSIZE);
                 break;
         }
-        boxShape.delete();
-        boxShape = new Rectangle(getX(),getY(),CELLSIZE,CELLSIZE);
-        boxShape.setColor(Color.YELLOW);
-        boxShape.fill();
+        deleteIcon();
+        boxShape = new Picture(getX(), getY(),"resources/jsIcon.png");
+        drawIcon();
 
-        CollisionDetector.checkSpots(level);
+        Game.checkSpots(level);
     }
 
 }
