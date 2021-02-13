@@ -6,19 +6,24 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Box extends Position {
 
+
     Picture boxShape;
 
 
     public Box(int x, int y){
         super(x, y);
 
+
         boxShape = new Picture(x, y,"resources/jsIcon.png");
+
+
 
     }
 
     @Override
     public void drawIcon() {
         boxShape.draw();
+
     }
 
     @Override
@@ -74,6 +79,7 @@ public class Box extends Position {
                 this.setX(getX() + CELLSIZE);
                 break;
         }
+
         deleteIcon();
         boxShape = new Picture(getX(), getY(),"resources/jsIcon.png");
         drawIcon();

@@ -135,11 +135,17 @@ public class Game {
     public void initLevel2(){
 
         level2 = new Position[63];
+
         background = new Picture (0,0, "resources/background500.png");
         background.draw();
         player = new Player(250,250);
         keyboard.setup(player, level2);
 
+
+        player = new Player(250,250);
+        keyboard.setup(player, level2);
+
+        // Top walls
 
         level2[0] = new Wall(0, 0);
         level2[1] = new Wall(50, 0);
@@ -153,6 +159,9 @@ public class Game {
         level2[9] = new Wall(450, 0);
         level2[10] = new Wall (500, 0);
 
+
+        // Right walls
+
         level2[11] = new Wall(500, 50);
         level2[12] = new Wall(500, 100);
         level2[13] = new Wall(500, 150);
@@ -163,6 +172,9 @@ public class Game {
         level2[18] = new Wall(500, 400);
         level2[19] = new Wall(500, 450);
         level2[20] = new Wall(500,500);
+
+
+        // Left walls
 
         level2[21] = new Wall(0, 50);
         level2[22] = new Wall(0, 100);
@@ -176,6 +188,8 @@ public class Game {
         level2[30] = new Wall(0, 400);
         level2[31] = new Wall(0, 450);
         level2[32] = new Wall(0,500);
+
+        // Bottom walls
 
         level2[33] = new Wall(50, 500);
         level2[34] = new Wall(100, 500);
@@ -215,19 +229,27 @@ public class Game {
         level2[61] = new Wall(350, 350);
         level2[62] = new Wall(150, 350);
 
+
         currentLevel = level2;
-
-
+        
     }
+
 
     public void initLevel3(){
 
         level3 = new Position[84];
+
         background = new Picture (0,0, "resources/background500.png");
         background.draw();
         player = new Player(300,50);
         keyboard.setup(player, level3);
 
+
+
+        player = new Player(300,50);
+        keyboard.setup(player, level3);
+
+        // Top walls
 
         level3[0] = new Wall(0, 0);
         level3[1] = new Wall(50, 0);
@@ -241,6 +263,8 @@ public class Game {
         level3[9] = new Wall(450, 0);
         level3[10] = new Wall (500, 0);
 
+        // Right walls
+
         level3[11] = new Wall(500, 50);
         level3[12] = new Wall(500, 100);
         level3[13] = new Wall(500, 150);
@@ -251,6 +275,8 @@ public class Game {
         level3[18] = new Wall(500, 400);
         level3[19] = new Wall(500, 450);
         level3[20] = new Wall(500,500);
+
+        // Left walls
 
         level3[21] = new Wall(0, 50);
         level3[22] = new Wall(0, 100);
@@ -265,6 +291,9 @@ public class Game {
         level3[31] = new Wall(0, 450);
         level3[32] = new Wall(0,500);
 
+
+        // Right walls
+
         level3[33] = new Wall(50, 500);
         level3[34] = new Wall(100, 500);
         level3[35] = new Wall(150, 500);
@@ -275,8 +304,6 @@ public class Game {
         level3[40] = new Wall(350, 500);
         level3[41] = new Wall(400, 500);
         level3[42] = new Wall(450, 500);
-
-
 
         // Boxes
         level3[43] = new Box (300,150);
@@ -290,6 +317,7 @@ public class Game {
         level3[48] = new Spot (250,450);
         level3[49] = new Spot (200,400);
         level3[50] = new Spot (150,250);
+
 
 
 
@@ -484,6 +512,42 @@ public class Game {
         level4[127] = new Spot(350, 450);
 
         level4[128] = new Wall (550,50);
+
+
+        // Inside walls
+        level3[51] = new Wall(50, 200);
+        level3[52] = new Wall(50, 250);
+        level3[53] = new Wall(50, 300);
+        level3[54] = new Wall(50, 350);
+        level3[55] = new Wall(50, 400);
+        level3[56] = new Wall(50, 450);
+        level3[57] = new Wall(100, 250);
+        level3[58] = new Wall(100, 300);
+        level3[59] = new Wall(100, 350);
+        level3[60] = new Wall(100, 400);
+        level3[61] = new Wall(100, 450);
+        level3[62] = new Wall(150, 300);
+        level3[63] = new Wall(150, 350);
+        level3[64] = new Wall(150, 400);
+        level3[65] = new Wall(150, 450);
+        level3[66] = new Wall(450, 200);
+        level3[67] = new Wall(450, 250);
+        level3[68] = new Wall(450, 300);
+        level3[69] = new Wall(450, 350);
+        level3[70] = new Wall(450, 400);
+        level3[71] = new Wall(450, 450);
+        level3[72] = new Wall(400, 250);
+        level3[73] = new Wall(400, 300);
+        level3[74] = new Wall(400, 350);
+        level3[75] = new Wall(400, 400);
+        level3[76] = new Wall(400, 450);
+        level3[77] = new Wall(350, 300);
+        level3[78] = new Wall(350, 350);
+        level3[79] = new Wall(350, 400);
+        level3[80] = new Wall(350, 450);
+        level3[81] = new Wall(300, 100);
+        level3[82] = new Wall(350, 100);
+        level3[83] = new Wall(200, 150);
 
         currentLevel = level4;
     }
