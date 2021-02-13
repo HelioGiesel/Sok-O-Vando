@@ -1,54 +1,34 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-
 import java.util.LinkedList;
 
 
 public class Game {
 
-    public Position[] currentLevel;
-
+    int currentLevelIndex = 1;
+    int numberOfLevels = 5;
+    Position[] currentLevel;
     Position[] level;
     Position[] level2;
     Position[] level3;
     Position[] level4;
     Position[] level5;
-    KeyboardListener keyboard = new KeyboardListener();
+    KeyboardListener keyboard;
     Player player;
-    public static Picture levelWon;
-    public Picture background;
+    Picture background;
 
 
     public Game(){
-
-
-        /*KeyboardListener keyboard = new KeyboardListener();
-        Player player = new Player(150,150);
-
-        keyboard.setup(player, level2);*/
-
+        this.keyboard =  new KeyboardListener();
+        keyboard.setup(this);
     }
 
 
-    public void init(){
-        initLevel5();
-        checkSpots(currentLevel);
-
-    }
-
-
-    public void initLevel1(){
+    public void loadLevel1(){
 
         level = new Position[65];
-        background = new Picture (0,0, "resources/background500.png");
-        background.draw();
-        player = new Player(150,150);
-        keyboard.setup(player, level);
-
 
         level[0] = new Wall(0, 0);
         level[1] = new Wall(50, 0);
@@ -129,22 +109,11 @@ public class Game {
         level[63] = new Wall(100, 300);
         level[64] = new Wall(100, 350);
 
-        currentLevel = level;
     }
 
-    public void initLevel2(){
+    public void loadLevel2(){
 
         level2 = new Position[63];
-
-        background = new Picture (0,0, "resources/background500.png");
-        background.draw();
-        player = new Player(250,250);
-        keyboard.setup(player, level2);
-
-
-        player = new Player(250,250);
-        keyboard.setup(player, level2);
-
         // Top walls
 
         level2[0] = new Wall(0, 0);
@@ -229,25 +198,11 @@ public class Game {
         level2[61] = new Wall(350, 350);
         level2[62] = new Wall(150, 350);
 
-
-        currentLevel = level2;
-        
     }
 
-
-    public void initLevel3(){
+    public void loadLevel3(){
 
         level3 = new Position[84];
-
-        background = new Picture (0,0, "resources/background500.png");
-        background.draw();
-        player = new Player(300,50);
-        keyboard.setup(player, level3);
-
-
-
-        player = new Player(300,50);
-        keyboard.setup(player, level3);
 
         // Top walls
 
@@ -356,20 +311,12 @@ public class Game {
         level3[82] = new Wall(350, 100);
         level3[83] = new Wall(200, 150);
 
-        currentLevel = level3;
-
 
     }
 
-    public void initLevel4(){
-
+    public void loadLevel4(){
 
         level4 = new Position[129];
-        background = new Picture (0,0, "resources/background600.png");
-        background.draw();
-        player = new Player(200,300);
-        keyboard.setup(player, level4);
-
 
         level4[0] = new Wall(0, 0);
         level4[1] = new Wall(50, 0);
@@ -513,54 +460,11 @@ public class Game {
 
         level4[128] = new Wall (550,50);
 
-
-        // Inside walls
-        level3[51] = new Wall(50, 200);
-        level3[52] = new Wall(50, 250);
-        level3[53] = new Wall(50, 300);
-        level3[54] = new Wall(50, 350);
-        level3[55] = new Wall(50, 400);
-        level3[56] = new Wall(50, 450);
-        level3[57] = new Wall(100, 250);
-        level3[58] = new Wall(100, 300);
-        level3[59] = new Wall(100, 350);
-        level3[60] = new Wall(100, 400);
-        level3[61] = new Wall(100, 450);
-        level3[62] = new Wall(150, 300);
-        level3[63] = new Wall(150, 350);
-        level3[64] = new Wall(150, 400);
-        level3[65] = new Wall(150, 450);
-        level3[66] = new Wall(450, 200);
-        level3[67] = new Wall(450, 250);
-        level3[68] = new Wall(450, 300);
-        level3[69] = new Wall(450, 350);
-        level3[70] = new Wall(450, 400);
-        level3[71] = new Wall(450, 450);
-        level3[72] = new Wall(400, 250);
-        level3[73] = new Wall(400, 300);
-        level3[74] = new Wall(400, 350);
-        level3[75] = new Wall(400, 400);
-        level3[76] = new Wall(400, 450);
-        level3[77] = new Wall(350, 300);
-        level3[78] = new Wall(350, 350);
-        level3[79] = new Wall(350, 400);
-        level3[80] = new Wall(350, 450);
-        level3[81] = new Wall(300, 100);
-        level3[82] = new Wall(350, 100);
-        level3[83] = new Wall(200, 150);
-
-        currentLevel = level4;
     }
 
-    public void initLevel5(){
+    public void loadLevel5(){
 
         level5 = new Position[129];
-        background = new Picture (0,0, "resources/background600.png");
-        background.draw();
-        player = new Player(300,300);
-        keyboard.setup(player, level5);
-
-
 
         level5[0] = new Wall(0, 0);
         level5[1] = new Wall(50, 0);
@@ -700,75 +604,98 @@ public class Game {
         level5[127] = new Spot(500, 400);
         level5[128] = new Spot(500, 500);
 
-        currentLevel = level5;
     }
 
-    public Position[] loadLevel(){
-        return level;
-    }
+    public void movePlayer(Directions directions){
+        try {
 
-    public static void drawLevel(Position[] level){
-        for (Position position : level) {
-            position.drawIcon();
-        }
-    }
+            if (currentLevelIndex <= numberOfLevels) {
+                switch (directions) {
+                    case UP:
+                        player.checkMove(Directions.UP, currentLevel);
+                        break;
 
-    public static void deleteLevel(Position[] level) {
-        for (Position position : level) {
-            position.deleteIcon();
-        }
-    }
+                    case DOWN:
+                        player.checkMove(Directions.DOWN, currentLevel);
+                        break;
 
-    public void deletePlayer(){
-        this.player.deleteIcon();
+                    case LEFT:
+                        player.checkMove(Directions.LEFT, currentLevel);
+                        break;
 
-    }
-
-    public static void resetLevel(Position[] level){
-        for (Position position : level) {
-            position.deleteIcon();
-            position.resetPos();
-            position.drawIcon();
-
-        }
-    }
-
-    public Position[] getCurrentLevel() {
-        return currentLevel;
-    }
-
-    public static void checkSpots(Position[] gameObjects) {
-
-        drawLevel(gameObjects);
-
-        //run through array, collect spots and boxes, check if they are on same position
-
-        LinkedList<Position> spotList = new LinkedList<>();
-        LinkedList<Position> boxList = new LinkedList<>();
-
-
-        for (Position element : gameObjects){
-
-            if (element instanceof Box) boxList.add(element);
-            if (element instanceof Spot) spotList.add(element);
-
-        }
-
-        int validation = 0;
-
-        for (Position box : boxList) {
-            for (Position spot : spotList) {
-                if ((box.getY() == spot.getY()) && (box.getX() == spot.getX())) validation++;
+                    case RIGHT:
+                        player.checkMove(Directions.RIGHT, currentLevel);
+                        break;
+                }
             }
+        } catch (WinningException ex) {
+
+            System.out.println("Won level " + currentLevelIndex);
+            player.deleteShape();
+            currentLevelIndex++;
+            init();
+        }
+    }
+
+    public void restartLevel(){
+
+        for (Position element : currentLevel) element.deleteShape();
+        player.deleteShape();
+        init();
+    }
+
+    public void init(){
+
+        switch (currentLevelIndex) {
+            case 1:
+                background = new Picture (0,0, "resources/background500.png");
+                background.draw();
+                loadLevel1();
+                player = new Player(150,150);
+                player.playerShape.draw();
+                currentLevel = level;
+                break;
+
+            case 2:
+                background = new Picture (0,0, "resources/background500.png");
+                background.draw();
+                loadLevel2();
+                player = new Player(250,250);
+                player.playerShape.draw();
+                currentLevel = level2;
+                break;
+
+            case 3:
+                background = new Picture (0,0, "resources/background500.png");
+                background.draw();
+                loadLevel3();
+                player = new Player(300,50);
+                player.playerShape.draw();
+                currentLevel = level3;
+                break;
+
+            case 4:
+                background = new Picture (0,0, "resources/background600.png");
+                background.draw();
+                loadLevel4();
+                player = new Player(200, 300);
+                player.playerShape.draw();
+                currentLevel = level4;
+                break;
+
+            case 5:
+                background = new Picture (0,0, "resources/background600.png");
+                background.draw();
+                loadLevel5();
+                player = new Player(300, 300);
+                player.playerShape.draw();
+                currentLevel = level5;
+                break;
         }
 
-        if ((validation == spotList.size()) && (validation != 0)){
-            System.out.println("Ganhou modafoca!!!!!");
-            deleteLevel(gameObjects);
-            levelWon = new Picture(0,0, "resources/youwin.png");
-            levelWon.draw();
-        };
-
+        if (currentLevelIndex > numberOfLevels) {
+            System.out.println("You are a beast!! You deserve a clap from Leandro and one 'Até já' from you know who");
+        }
     }
 }
 

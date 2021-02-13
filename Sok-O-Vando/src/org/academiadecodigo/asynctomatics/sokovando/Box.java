@@ -9,29 +9,20 @@ public class Box extends Position {
 
     Picture boxShape;
 
-
     public Box(int x, int y){
         super(x, y);
 
-
         boxShape = new Picture(x, y,"resources/jsIcon.png");
-
-
-
-    }
-
-    @Override
-    public void drawIcon() {
         boxShape.draw();
 
     }
 
     @Override
-    public void deleteIcon() {
+    public void deleteShape() {
         boxShape.delete();
     }
 
-    public boolean checkMove(Directions direction, Position[] level){
+    public boolean checkMove(Directions direction, Position[] level) throws WinningException {
 
         Box ghostPosition = new Box(boxShape.getX(), boxShape.getY());
 
@@ -64,7 +55,7 @@ public class Box extends Position {
 
     }
 
-    public void move(Directions direction, Position[] level){
+    public void move(Directions direction, Position[] level) throws WinningException {
         switch (direction) {
             case UP:
                 this.setY(getY() - CELLSIZE);
@@ -80,11 +71,11 @@ public class Box extends Position {
                 break;
         }
 
-        deleteIcon();
+        boxShape.delete();
         boxShape = new Picture(getX(), getY(),"resources/jsIcon.png");
-        drawIcon();
+        boxShape.draw();
 
-        Game.checkSpots(level);
+        CollisionDetector.checkSpots(level);
     }
 
 }

@@ -12,16 +12,12 @@ public class Spot extends Position {
         super(x, y);
 
         spotShape = new Picture(x, y, "resources/vandoIcon.png");
-
-    }
-
-    @Override
-    public void drawIcon(){
         spotShape.draw();
     }
 
+
     @Override
-    public void deleteIcon() {
-        spotShape.delete();
+    public void deleteShape() {
+        this.spotShape.delete();
     }
 }

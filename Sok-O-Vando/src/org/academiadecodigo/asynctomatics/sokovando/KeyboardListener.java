@@ -8,14 +8,11 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class KeyboardListener implements KeyboardHandler {
 
-    Player player;
-    Position[] level;
     Game game;
 
-    public void setup(Player player, Position[] level1) {
+    public void setup(Game game) {
 
-        this.player = player;
-        this.level = level1;
+        this.game = game;
 
         Keyboard keyboard = new Keyboard(this);
 
@@ -96,44 +93,34 @@ public class KeyboardListener implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        if (keyboardEvent.getKey() == 38) {  }
+       /* if (keyboardEvent.getKey() == 38) {  }
         if (keyboardEvent.getKey() == 40) {   }
         if (keyboardEvent.getKey() == 37) {   }
         if (keyboardEvent.getKey() == 39) {   }
         if (keyboardEvent.getKey() == 82) {   }
-        if (keyboardEvent.getKey() == 32) {   }
+        if (keyboardEvent.getKey() == 32) {   }*/
     }
 
     
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         if (keyboardEvent.getKey() == 38) {
-            player.checkMove(Directions.UP, level);
-            player.playerShape.delete();
-            player.playerShape = player.getPlayerUpIcon(player.getX(), player.getY());
-            player.playerShape.draw();
+            game.movePlayer(Directions.UP);
         }
         if (keyboardEvent.getKey() == 40) {
-            player.checkMove(Directions.DOWN, level);
-            player.playerShape.delete();
-            player.playerShape = player.getPlayerDownIcon(player.getX(), player.getY());
-            player.playerShape.draw();
+            game.movePlayer(Directions.DOWN);
         }
         if (keyboardEvent.getKey() == 37) {
-            player.checkMove(Directions.LEFT, level);
-            player.playerShape.delete();
-            player.playerShape = player.getPlayerLeftIcon(player.getX(), player.getY());
-            player.playerShape.draw();
+            game.movePlayer(Directions.LEFT);
         }
         if (keyboardEvent.getKey() == 39) {
-            player.checkMove(Directions.RIGHT, level);
-            player.playerShape.delete();
-            player.playerShape = player.getPlayerRightIcon(player.getX(), player.getY());
-            player.playerShape.draw();
+            game.movePlayer(Directions.RIGHT);
         }
-        if (keyboardEvent.getKey() == 82) {
 
+        if (keyboardEvent.getKey() == 82) {
+            game.restartLevel();
         }
+
         if (keyboardEvent.getKey() == 32) {
             System.exit(1);
     }   }

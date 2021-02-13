@@ -12,16 +12,11 @@ public class Wall extends Position {
         super(x, y);
 
         wallShape = new Picture(x, y, "resources/wall_Icon.png");
-
-    }
-
-    public void drawIcon(){
-
         wallShape.draw();
     }
 
     @Override
-    public void deleteIcon() {
-        wallShape.delete();
+    public void deleteShape() {
+        this.wallShape.delete();
     }
 }

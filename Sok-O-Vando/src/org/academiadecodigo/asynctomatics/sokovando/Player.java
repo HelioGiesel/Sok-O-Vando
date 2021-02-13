@@ -13,40 +13,35 @@ public class Player extends Position {
     public Player(int x, int y){
         super(x,y);
 
-        Picture playerShape = new Picture(x,y,"resources/playerDownIcon.png");
+        this.playerShape = new Picture(x,y,"resources/playerDownIcon.png");
         playerShape.draw();
 
         this.playerShape = playerShape;
     }
 
+    @Override
+    public void deleteShape() {
+        this.playerShape.delete();
+    }
 
-    public void drawIcon(){
-        playerShape.draw();
+    public String getPlayerIconDirection(Directions direction){
+        switch (direction){
+            case UP:
+                return "resources/playerUpIcon.png";
+
+            case LEFT:
+                return "resources/playerLeftIcon.png";
+
+            case RIGHT:
+                return "resources/playerRightIcon.png";
+
+            default:
+                return "resources/playerDownIcon.png";
+        }
     }
 
 
-    public void deleteIcon() {
-        playerShape.delete();
-    }
-
-    public Picture getPlayerDownIcon(int x, int y){
-        return new Picture(x,y, "resources/playerDownIcon.png");
-    }
-
-    public Picture getPlayerUpIcon(int x, int y){
-        return new Picture(x,y, "resources/playerUpIcon.png");
-    }
-
-    public Picture getPlayerRightIcon(int x, int y){
-        return new Picture(x,y, "resources/playerRightIcon.png");
-    }
-
-    public Picture getPlayerLeftIcon(int x, int y){
-        return new Picture(x,y, "resources/playerLeftIcon.png");
-    }
-
-
-    public void checkMove(Directions direction, Position[] level){
+    public void checkMove(Directions direction, Position[] level) throws WinningException {
 
         this.level = level;
 
@@ -72,36 +67,35 @@ public class Player extends Position {
                 canMove = !(CollisionDetector.isColliding(level, ghostPosition, direction));
                 break;
         }
-        //System.out.println(canMove);
+
         ghostPosition.playerShape.delete();
+
+        this.playerShape.load(getPlayerIconDirection(direction));
+
+        playerShape.draw();
+
 
         if (canMove) this.move(direction);
     }
 
-    public void move(Directions direction){
+    public void move(Directions direction) {
         switch (direction) {
             case UP:
                 this.setY(getY() - CELLSIZE);
+                this.playerShape.translate(0,-CELLSIZE);
                 break;
             case DOWN:
                 this.setY(getY() + CELLSIZE);
+                this.playerShape.translate(0, CELLSIZE);
                 break;
             case LEFT:
                 this.setX(getX() - CELLSIZE);
+                this.playerShape.translate(-CELLSIZE, 0);
                 break;
             case RIGHT:
                 this.setX(getX() + CELLSIZE);
+                this.playerShape.translate(CELLSIZE, 0);
                 break;
         }
-
-        deleteIcon();
-        playerShape = new Picture(getX(),getY(),"resources/playerDownIcon.png");
-        drawIcon();
-
-       // System.out.printf(super.getX() + " x and y " + getY());
-    }
-
-    public void resetPos(){
-
     }
 }

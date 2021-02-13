@@ -4,14 +4,10 @@ public abstract class Position {
     public static final int CELLSIZE = 50;
     private int x;
     private int y;
-    private final int startX;
-    private final int startY;
 
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
-        startX = x;
-        startY = y;
     }
 
     public int getX() {
@@ -26,21 +22,9 @@ public abstract class Position {
         this.x = newX;
     }
 
-    ;
-
     public void setY(int newY) {
         this.y = newY;
     }
 
-    ;
-
-    public abstract void drawIcon();
-
-    public abstract void deleteIcon();
-
-    public void resetPos() {
-        this.x = startX;
-        this.y = startY;
-
-    }
+    public abstract void deleteShape();
 }
