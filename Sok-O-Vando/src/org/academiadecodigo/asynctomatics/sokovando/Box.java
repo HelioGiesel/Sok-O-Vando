@@ -6,21 +6,23 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Box extends Position {
 
-    Rectangle boxShape;
-    Picture icon;
+    //Rectangle boxShape;
+    Picture boxShape;
 
 
     public Box(int x, int y){
         super(x, y);
 
-        boxShape = new Rectangle(x, y, CELLSIZE, CELLSIZE);
+        //boxShape = new Rectangle(x, y, CELLSIZE, CELLSIZE);
+        boxShape = new Picture(x,y,"resources/box.png");
 
     }
 
     @Override
     public void drawIcon() {
-        boxShape.setColor(Color.YELLOW);
-        boxShape.fill();
+        //boxShape.setColor(Color.YELLOW);
+        boxShape.draw();
+        //boxShape.fill();
     }
 
     @Override
@@ -77,9 +79,11 @@ public class Box extends Position {
                 break;
         }
         boxShape.delete();
-        boxShape = new Rectangle(getX(),getY(),CELLSIZE,CELLSIZE);
-        boxShape.setColor(Color.YELLOW);
-        boxShape.fill();
+        //boxShape = new Rectangle(getX(),getY(),CELLSIZE,CELLSIZE);
+        boxShape = new Picture(getX(),getY(),"resources/box.png");
+        //boxShape.setColor(Color.YELLOW);
+        //boxShape.fill();
+        boxShape.draw();
 
         CollisionDetector.checkSpots(level);
     }
