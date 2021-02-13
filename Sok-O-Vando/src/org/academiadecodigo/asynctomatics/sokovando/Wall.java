@@ -12,10 +12,16 @@ public class Wall extends Position {
 
         wallShape = new Rectangle(x, y, CELLSIZE, CELLSIZE);
 
-        wallShape.setColor(Color.LIGHT_GRAY);
-        wallShape.draw();
+    }
+
+    public void drawIcon(){
 
         wallShape.setColor(Color.DARK_GRAY);
         wallShape.fill();
+    }
+
+    @Override
+    public void deleteIcon() {
+        wallShape.delete();
     }
 }

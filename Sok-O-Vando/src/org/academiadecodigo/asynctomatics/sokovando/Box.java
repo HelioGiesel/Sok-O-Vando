@@ -15,9 +15,17 @@ public class Box extends Position {
 
         boxShape = new Rectangle(x, y, CELLSIZE, CELLSIZE);
 
+    }
+
+    @Override
+    public void drawIcon() {
         boxShape.setColor(Color.YELLOW);
         boxShape.fill();
+    }
 
+    @Override
+    public void deleteIcon() {
+        boxShape.delete();
     }
 
     public boolean checkMove(Directions direction, Position[] level){

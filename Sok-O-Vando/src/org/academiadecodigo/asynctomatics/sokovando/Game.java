@@ -1,10 +1,14 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
+import java.util.LinkedList;
+
 public class Game {
 
     Position[] level;
     Position[] level2;
     Position[] level3;
+    KeyboardListener keyboard = new KeyboardListener();
+    Player player;
 
 
     public Game(){
@@ -17,9 +21,55 @@ public class Game {
 
     }
 
-    public void loadLevel1(){
+
+    public void init(){
+        initLevel1();
+        drawLevel(level);
+
+            if(CollisionDetector.checkSpots(level)){
+                deleteLevel(level);
+                deletePlayer();
+                initLevel2();
+                drawLevel(level2);
+            }
+
+
+        /*if(CollisionDetector.checkSpots(level)){
+            for (Position position : level) {
+                position
+            }
+
+            initLevel2();
+
+        }*/
+
+
+
+       /* for (Position position : level2) {
+            position.drawIcon();
+        }
+
+        if(CollisionDetector.checkSpots(level2)){
+            level2 = new Position[0];
+        }
+
+        loadLevel3();
+
+        for (Position position : level3) {
+            position.drawIcon();
+        }
+
+        if(CollisionDetector.checkSpots(level3)){
+           level3 = new Position[0];
+        }*/
+    }
+
+
+    public void initLevel1(){
 
         level = new Position[65];
+        player = new Player(150,150);
+        keyboard.setup(player, level);
 
         level[0] = new Wall(0, 0);
         level[1] = new Wall(50, 0);
@@ -99,17 +149,13 @@ public class Game {
         level[62] = new Wall(100, 100);
         level[63] = new Wall(100, 300);
         level[64] = new Wall(100, 350);
-
-        KeyboardListener keyboard = new KeyboardListener();
-        Player player = new Player(150,150);
-
-        keyboard.setup(player, level);
-
     }
 
-    public void loadLevel2(){
+    public void initLevel2(){
 
         level2 = new Position[100];
+        player = new Player(250,250);
+        keyboard.setup(player, level2);
 
         level2[0] = new Wall(0, 0);
         level2[1] = new Wall(50, 0);
@@ -186,16 +232,13 @@ public class Game {
         level2[52] = new Wall(150, 350);
 
 
-
-        KeyboardListener keyboard = new KeyboardListener();
-        Player player = new Player(250,250);
-
-        keyboard.setup(player, level2);
     }
 
-    public void loadLevel3(){
+    public void initLevel3(){
 
         level3 = new Position[100];
+        player = new Player(300,50);
+        keyboard.setup(player, level3);
 
         level3[0] = new Wall(0, 0);
         level3[1] = new Wall(50, 0);
@@ -297,16 +340,57 @@ public class Game {
         level3[91] = new Wall(200, 150);
 
 
-        KeyboardListener keyboard = new KeyboardListener();
-        Player player = new Player(300,50);
-
-        keyboard.setup(player, level3);
-
-
     }
 
-    public Position[] getGameObjectsArray(){
+    public Position[] loadLevel(){
         return level;
     }
 
+    public void drawLevel(Position[] level){
+        for (Position position : level) {
+            position.drawIcon();
+        }
+    }
+
+    public void deleteLevel(Position[] level) {
+        for (Position position : level) {
+            position.deleteIcon();
+        }
+    }
+
+    public void deletePlayer(){
+        player.deleteIcon();
+    }
+
+    /*public static boolean checkSpots(Position[] level) {
+
+        //run through array, collect spots and boxes, check if they are on same position
+
+        LinkedList<Position> spotList = new LinkedList<>();
+        LinkedList<Position> boxList = new LinkedList<>();
+
+        for (Position element : level){
+
+            if (element instanceof Box) boxList.add(element);
+            if (element instanceof Spot) spotList.add(element);
+
+        }
+
+        int validation = 0;
+
+        for (Position box : boxList) {
+            for (Position spot : spotList) {
+                if ((box.getY() == spot.getY()) && (box.getX() == spot.getX())) validation++;
+            }
+        }
+
+        if ((validation == spotList.size()) && (validation != 0)){
+            System.out.println("Ganhou modafoca!!!!!");
+            return true;
+
+        }
+
+        return false;
+    }
+*/
 }

@@ -27,9 +27,7 @@ public class CollisionDetector {
         return false;
     }
 
-    public static void checkSpots(Position[] gameObjects) {
-
-
+    public static boolean checkSpots(Position[] gameObjects) {
 
         //run through array, collect spots and boxes, check if they are on same position
 
@@ -51,8 +49,13 @@ public class CollisionDetector {
             }
         }
 
-        if ((validation == spotList.size()) && (validation != 0)) System.out.println("Ganhou modafoca!!!!!");;
+        if ((validation == spotList.size()) && (validation != 0)){
+            System.out.println("Ganhou modafoca!!!!!");
+            return true;
 
+        };
+
+        return false;
     }
 
 }

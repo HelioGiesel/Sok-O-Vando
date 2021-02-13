@@ -7,10 +7,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Player extends Position {
 
     Picture playerShape;
-    Picture playerDownIcon;
-    Picture playerUpIcon;
-    Picture playerRightIcon;
-    Picture playerLeftIcon;
+
 
     Position[] level;
 
@@ -22,6 +19,16 @@ public class Player extends Position {
         playerShape.draw();
 
         this.playerShape = playerShape;
+    }
+
+    @Override
+    public void drawIcon(){
+        playerShape.draw();
+    }
+
+    @Override
+    public void deleteIcon() {
+        playerShape.delete();
     }
 
     public Picture getPlayerDownIcon(int x, int y){
@@ -67,7 +74,7 @@ public class Player extends Position {
                 canMove = !(CollisionDetector.isColliding(level, ghostPosition, direction));
                 break;
         }
-        System.out.println(canMove);
+        //System.out.println(canMove);
         ghostPosition.playerShape.delete();
 
         if (canMove) this.move(direction);
@@ -93,6 +100,6 @@ public class Player extends Position {
         playerShape = new Picture(getX(),getY(),"resources/playerDownIcon.png");
         playerShape.draw();
 
-        System.out.printf(super.getX() + " x and y " + getY());
+       // System.out.printf(super.getX() + " x and y " + getY());
     }
 }

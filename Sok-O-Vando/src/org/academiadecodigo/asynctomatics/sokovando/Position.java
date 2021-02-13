@@ -20,4 +20,8 @@ public abstract class Position {
     public void setX(int newX) {this.x = newX;};
     public void setY(int newY) {this.y = newY;};
 
+    public abstract void drawIcon();
+
+    public abstract void deleteIcon();
+
 }
