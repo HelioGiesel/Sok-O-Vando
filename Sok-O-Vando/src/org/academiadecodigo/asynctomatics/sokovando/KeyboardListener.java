@@ -112,20 +112,20 @@ public class KeyboardListener implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
         if (keyboardEvent.getKey() == 38) {
-            game.movePlayer(Directions.UP);
+            if (game.started) game.movePlayer(Directions.UP);
         }
         if (keyboardEvent.getKey() == 40) {
-            game.movePlayer(Directions.DOWN);
+            if (game.started) game.movePlayer(Directions.DOWN);
         }
         if (keyboardEvent.getKey() == 37) {
-            game.movePlayer(Directions.LEFT);
+            if (game.started) game.movePlayer(Directions.LEFT);
         }
         if (keyboardEvent.getKey() == 39) {
-            game.movePlayer(Directions.RIGHT);
+            if (game.started) game.movePlayer(Directions.RIGHT);
         }
 
         if (keyboardEvent.getKey() == 82) {
-            game.restartLevel();
+            if (game.started) game.restartLevel();
         }
 
         if (keyboardEvent.getKey() == 32) {
