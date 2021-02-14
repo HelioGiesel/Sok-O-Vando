@@ -1,6 +1,7 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
 
+import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import java.util.LinkedList;
 
@@ -20,6 +21,9 @@ public class Game {
     Picture background;
     Picture startMenu;
     boolean started = false;
+    Sound menu = new Sound("/resources/retromenu.wav");
+    Sound gameCoin =  new Sound("/resources/gamecoin.wav");
+    Sound main = new Sound("/resources/mmkloop.wav");
 
 
     public Game(){
@@ -652,12 +656,18 @@ public class Game {
 
     public void initMenu() throws InterruptedException {
 
+        menu.play(true);
+
         while(!started) {
             startMenu = new Picture(0, 0, "resources/startMenu.png");
             startMenu.draw();
+
         }
         deleteStartMenu();
+        menu.stop();
+        gameCoin.play(true);
         init();
+        main.setLoop(1200);
     }
 
     public void deleteStartMenu() {
