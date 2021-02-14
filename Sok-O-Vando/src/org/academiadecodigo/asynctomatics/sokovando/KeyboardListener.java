@@ -87,6 +87,18 @@ public class KeyboardListener implements KeyboardHandler {
         restartLevelReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         keyboard.addEventListener(restartLevelReleased);
 
+        //Event of pressing the 'Q' key
+        KeyboardEvent quitGamePressed = new KeyboardEvent();
+        quitGamePressed.setKey(KeyboardEvent.KEY_Q);
+        quitGamePressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        keyboard.addEventListener(quitGamePressed);
+
+        //Event of releasing the 'Q' key
+        KeyboardEvent quitGameReleased = new KeyboardEvent();
+        quitGameReleased.setKey(KeyboardEvent.KEY_Q);
+        quitGameReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(quitGameReleased);
+
     }
 
 
@@ -117,6 +129,11 @@ public class KeyboardListener implements KeyboardHandler {
         }
 
         if (keyboardEvent.getKey() == 32) {
+            game.setStarted(true);
+
+        }
+
+        if (keyboardEvent.getKey() == 81) {
             System.exit(1);
         }
     }

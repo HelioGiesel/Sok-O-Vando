@@ -18,6 +18,8 @@ public class Game {
     KeyboardListener keyboard;
     Player player;
     Picture background;
+    Picture startMenu;
+    boolean started = false;
 
 
     public Game(){
@@ -642,6 +644,24 @@ public class Game {
         for (Position element : currentLevel) element.deleteShape();
         player.deleteShape();
         init();
+    }
+
+    public void setStarted(boolean started){
+        this.started = started;
+    }
+
+    public void initMenu() throws InterruptedException {
+
+        while(!started) {
+            startMenu = new Picture(0, 0, "resources/startMenu.png");
+            startMenu.draw();
+        }
+        deleteStartMenu();
+        init();
+    }
+
+    public void deleteStartMenu() {
+        startMenu.delete();
     }
 
     public void init(){
