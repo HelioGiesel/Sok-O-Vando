@@ -2,6 +2,7 @@ package org.academiadecodigo.asynctomatics.sokovando;
 
 
 import org.academiadecodigo.bootcamp.Sound;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import java.util.LinkedList;
 import java.util.Timer;
@@ -670,16 +671,18 @@ public class Game {
     public void initMenu() throws InterruptedException {
 
         menu.play(true);
+        startMenu = new Picture(0, 0, "resources/startMenu.png");
 
         while(!started) {
-            startMenu = new Picture(0, 0, "resources/startMenu.png");
             startMenu.draw();
         }
+
         deleteStartMenu();
         menu.stop();
         gameCoin.play(true);
         init();
         main.play(true);
+
     }
 
     public void deleteStartMenu() {
@@ -696,6 +699,7 @@ public class Game {
                 player = new Player(150,150);
                 player.playerShape.draw();
                 currentLevel = level;
+                System.gc();
                 break;
 
             case 2:
