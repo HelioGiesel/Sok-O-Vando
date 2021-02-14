@@ -11,6 +11,7 @@ public class Game {
 
     int currentLevelIndex = 1;
     int numberOfLevels = 5;
+    int itDoesntMatter = 0;
     Position[] currentLevel;
     Position[] level;
     Position[] level2;
@@ -647,7 +648,7 @@ public class Game {
             System.out.println("Won level " + currentLevelIndex);
             player.deleteShape();
             currentLevelIndex++;
-            init();
+            levelTransition();
         }
     }
 
@@ -671,19 +672,59 @@ public class Game {
 
         menu.play(true);
 
+        boolean runForest = true;
+
         while(!started) {
-            startMenu = new Picture(0, 0, "resources/startMenu.png");
-            startMenu.draw();
+            System.out.println("Why?!");
+            if (runForest) {
+                startMenu = new Picture(0, 0, "resources/startMenu.png");
+                startMenu.draw();
+                runForest = false;
+            }
         }
         deleteStartMenu();
         menu.stop();
         gameCoin.play(true);
-        init();
+        levelTransition();
         main.play(true);
     }
 
     public void deleteStartMenu() {
         startMenu.delete();
+    }
+
+    public void levelTransition(){
+        switch (currentLevelIndex) {
+            case 1:
+                init();
+                break;
+
+            case 2:
+
+            case 3:
+                player = null;
+                levelClear = new Picture(0, 0, "resources/levelClear550.png");
+                levelClear.draw();
+                setStarted(false);
+                Timer t1 = new java.util.Timer();
+                t1.schedule(
+                        new java.util.TimerTask() {
+                            @Override
+                            public void run() {
+                                levelClear.delete();
+                                init();
+                                t1.cancel();
+                                setStarted(true);
+                            }
+                        },
+                        3000
+                );
+                break;
+
+            default:
+                init();
+                break;
+        }
     }
 
     public void init(){
@@ -699,50 +740,21 @@ public class Game {
                 break;
 
             case 2:
-                player = null;
-                levelClear = new Picture(0, 0, "resources/levelClear550.png");
-                levelClear.draw();
-                Timer t1 = new java.util.Timer();
-                t1.schedule(
-                        new java.util.TimerTask() {
-                            @Override
-                            public void run() {
-                                levelClear.delete();
-                                background = new Picture(0, 0, "resources/background500.png");
-                                background.draw();
-                                loadLevel2();
-                                player = new Player(250, 250);
-                                player.playerShape.draw();
-                                currentLevel = level2;
-                                t1.cancel();
-                                }
-                            },
-                            3000
-                    );
-
+                background = new Picture(0, 0, "resources/background500.png");
+                background.draw();
+                loadLevel2();
+                player = new Player(250, 250);
+                player.playerShape.draw();
+                currentLevel = level2;
                 break;
 
             case 3:
-                player = null;
-                levelClear = new Picture (0, 0, "resources/levelClear550.png");
-                levelClear.draw();
-                Timer t2 = new java.util.Timer();
-                t2.schedule(
-                        new java.util.TimerTask() {
-                            @Override
-                            public void run() {
-                                levelClear.delete();
-                                background = new Picture(0, 0, "resources/background500.png");
-                                background.draw();
-                                loadLevel3();
-                                player = new Player(300, 50);
-                                player.playerShape.draw();
-                                currentLevel = level3;
-                                t2.cancel();
-                            }
-                        },
-                            3000
-                );
+                background = new Picture(0, 0, "resources/background500.png");
+                background.draw();
+                loadLevel3();
+                player = new Player(300, 50);
+                player.playerShape.draw();
+                currentLevel = level3;
                 break;
 
             case 4:
@@ -752,6 +764,7 @@ public class Game {
                 laugh.play(true);
                 level4Transition = new Picture(0,0, "resources/level4Transition.png");
                 level4Transition.draw();
+                setStarted(false);
                 Timer t3 = new java.util.Timer();
                 t3.schedule(
                         new java.util.TimerTask() {
@@ -766,6 +779,7 @@ public class Game {
                                 player.playerShape.draw();
                                 currentLevel = level4;
                                 t3.cancel();
+                                setStarted(true);
                             }
                         },
                         5000
@@ -776,6 +790,7 @@ public class Game {
                 player = null;
                 levelClear600 = new Picture (0,0, "resources/levelClear600.png");
                 levelClear600.draw();
+                setStarted(false);
                 Timer t4 = new java.util.Timer();
                 t4.schedule(
                         new java.util.TimerTask() {
@@ -789,6 +804,7 @@ public class Game {
                                 player.playerShape.draw();
                                 currentLevel = level5;
                                 t4.cancel();
+                                setStarted(true);
                             }
                         },
                             3000
