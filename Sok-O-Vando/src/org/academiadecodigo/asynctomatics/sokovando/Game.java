@@ -3,7 +3,6 @@ package org.academiadecodigo.asynctomatics.sokovando;
 
 import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import java.util.LinkedList;
 import java.util.Timer;
 
 
