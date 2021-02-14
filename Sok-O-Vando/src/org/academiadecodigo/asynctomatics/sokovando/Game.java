@@ -4,6 +4,7 @@ package org.academiadecodigo.asynctomatics.sokovando;
 import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import java.util.LinkedList;
+import java.util.Timer;
 
 
 public class Game {
@@ -20,10 +21,17 @@ public class Game {
     Player player;
     Picture background;
     Picture startMenu;
+    Picture level4Transition;
+    Picture levelClear;
+    Picture levelClear600;
+    Picture win;
     boolean started = false;
-    Sound menu = new Sound("/resources/retromenu.wav");
+    boolean restartedLevel = false;
+    Sound menu = new Sound("/resources/startScreen.wav");
     Sound gameCoin =  new Sound("/resources/gamecoin.wav");
-    Sound main = new Sound("/resources/mmkloop.wav");
+    Sound main = new Sound("/resources/main.wav");
+    Sound laugh = new Sound ("/resources/evilLaugh.wav");
+    Sound main2 = new Sound("/resources/level4_5.wav");
 
 
     public Game(){
@@ -647,11 +655,16 @@ public class Game {
 
         for (Position element : currentLevel) element.deleteShape();
         player.deleteShape();
+        setRestartedLevel(true);
         init();
     }
 
     public void setStarted(boolean started){
         this.started = started;
+    }
+
+    public void setRestartedLevel(boolean restarted) {
+        this.restartedLevel = restarted;
     }
 
     public void initMenu() throws InterruptedException {
@@ -661,13 +674,12 @@ public class Game {
         while(!started) {
             startMenu = new Picture(0, 0, "resources/startMenu.png");
             startMenu.draw();
-
         }
         deleteStartMenu();
         menu.stop();
         gameCoin.play(true);
         init();
-        main.setLoop(1200);
+        main.play(true);
     }
 
     public void deleteStartMenu() {
@@ -687,44 +699,108 @@ public class Game {
                 break;
 
             case 2:
-                background = new Picture (0,0, "resources/background500.png");
-                background.draw();
-                loadLevel2();
-                player = new Player(250,250);
-                player.playerShape.draw();
-                currentLevel = level2;
+                player = null;
+                levelClear = new Picture(0, 0, "resources/levelClear550.png");
+                levelClear.draw();
+                Timer t1 = new java.util.Timer();
+                t1.schedule(
+                        new java.util.TimerTask() {
+                            @Override
+                            public void run() {
+                                levelClear.delete();
+                                background = new Picture(0, 0, "resources/background500.png");
+                                background.draw();
+                                loadLevel2();
+                                player = new Player(250, 250);
+                                player.playerShape.draw();
+                                currentLevel = level2;
+                                t1.cancel();
+                                }
+                            },
+                            3000
+                    );
+
                 break;
 
             case 3:
-                background = new Picture (0,0, "resources/background500.png");
-                background.draw();
-                loadLevel3();
-                player = new Player(300,50);
-                player.playerShape.draw();
-                currentLevel = level3;
+                player = null;
+                levelClear = new Picture (0, 0, "resources/levelClear550.png");
+                levelClear.draw();
+                Timer t2 = new java.util.Timer();
+                t2.schedule(
+                        new java.util.TimerTask() {
+                            @Override
+                            public void run() {
+                                levelClear.delete();
+                                background = new Picture(0, 0, "resources/background500.png");
+                                background.draw();
+                                loadLevel3();
+                                player = new Player(300, 50);
+                                player.playerShape.draw();
+                                currentLevel = level3;
+                                t2.cancel();
+                            }
+                        },
+                            3000
+                );
                 break;
 
             case 4:
-                background = new Picture (0,0, "resources/background600.png");
-                background.draw();
-                loadLevel4();
-                player = new Player(200, 300);
-                player.playerShape.draw();
-                currentLevel = level4;
+                player = null;
+                main.stop();
+                main2.stop();
+                laugh.play(true);
+                level4Transition = new Picture(0,0, "resources/level4Transition.png");
+                level4Transition.draw();
+                Timer t3 = new java.util.Timer();
+                t3.schedule(
+                        new java.util.TimerTask() {
+                            @Override
+                            public void run() {
+                                level4Transition.delete();
+                                main2.play(true);
+                                background = new Picture (0,0, "resources/background600.png");
+                                background.draw();
+                                loadLevel4();
+                                player = new Player(200, 300);
+                                player.playerShape.draw();
+                                currentLevel = level4;
+                                t3.cancel();
+                            }
+                        },
+                        5000
+                );
                 break;
 
             case 5:
-                background = new Picture (0,0, "resources/background600.png");
-                background.draw();
-                loadLevel5();
-                player = new Player(300, 300);
-                player.playerShape.draw();
-                currentLevel = level5;
+                player = null;
+                levelClear600 = new Picture (0,0, "resources/levelClear600.png");
+                levelClear600.draw();
+                Timer t4 = new java.util.Timer();
+                t4.schedule(
+                        new java.util.TimerTask() {
+                            @Override
+                            public void run() {
+                                levelClear600.delete();
+                                background = new Picture(0, 0, "resources/background600.png");
+                                background.draw();
+                                loadLevel5();
+                                player = new Player(300, 300);
+                                player.playerShape.draw();
+                                currentLevel = level5;
+                                t4.cancel();
+                            }
+                        },
+                            3000
+                );
                 break;
         }
 
         if (currentLevelIndex > numberOfLevels) {
             System.out.println("You are a beast!! You deserve a clap from Leandro and one 'Até já' from you know who");
+            win = new Picture(0,0, "/resources/youwin.png");
+            player.playerShape.delete();
+            win.draw();
         }
     }
 }
