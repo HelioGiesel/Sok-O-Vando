@@ -2,7 +2,10 @@ package org.academiadecodigo.asynctomatics.sokovando;
 
 
 import org.academiadecodigo.bootcamp.Sound;
+import org.academiadecodigo.simplegraphics.graphics.Canvas;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import javax.swing.*;
 import java.util.Timer;
 
 
@@ -33,13 +36,12 @@ public class Game {
     Sound laugh = new Sound ("/resources/evilLaugh.wav");
     Sound main2 = new Sound("/resources/level4_5.wav");
 
-
     public Game(){
         this.keyboard =  new KeyboardListener();
         keyboard.setup(this);
     }
 
-
+    // Creates objects of the level
     public void loadLevel1(){
 
         level = new Position[65];
@@ -124,7 +126,7 @@ public class Game {
         level[64] = new Wall(100, 350);
 
     }
-
+    // Creates objects of the level
     public void loadLevel2(){
 
         level2 = new Position[63];
@@ -213,7 +215,7 @@ public class Game {
         level2[62] = new Wall(150, 350);
 
     }
-
+    // Creates objects of the level
     public void loadLevel3(){
 
         level3 = new Position[84];
@@ -327,7 +329,7 @@ public class Game {
 
 
     }
-
+    // Creates objects of the level
     public void loadLevel4(){
 
         level4 = new Position[129];
@@ -475,7 +477,7 @@ public class Game {
         level4[128] = new Wall (550,50);
 
     }
-
+    // Creates objects of the level
     public void loadLevel5(){
 
         level5 = new Position[129];
@@ -667,7 +669,7 @@ public class Game {
         this.restartedLevel = restarted;
     }
 
-    public void initMenu() throws InterruptedException {
+    public void initMenu() {
 
         menu.play(true);
 
@@ -694,9 +696,6 @@ public class Game {
 
     public void levelTransition(){
         switch (currentLevelIndex) {
-            case 1:
-                init();
-                break;
 
             case 2:
 
@@ -761,6 +760,7 @@ public class Game {
                 main.stop();
                 main2.stop();
                 laugh.play(true);
+                //Keep transition when level is restarted
                 level4Transition = new Picture(0,0, "resources/level4Transition.png");
                 level4Transition.draw();
                 setStarted(false);
