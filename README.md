@@ -1,6 +1,6 @@
 # Sok-O-Vando (Sokoban)
 
-##### Move the JS boxes into Vando's face and feel the pleasure blocking him with the programming language who does not shall be named.<br />Careful to not make a dead end move, ortherwise Vando will laugth at your worthless and unusefull mind.
+##### Move the JS boxes into Vando's face and feel the pleasure of blocking him with the programming language which shall not be named.<br />Careful to not make a dead end move, ortherwise Vando will laugh at your worthless and useless mind.
 
 ### Main Classes:<br />
 	- Main
