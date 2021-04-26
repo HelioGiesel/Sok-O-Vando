@@ -1,19 +1,15 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
-
+import org.academiadecodigo.asynctomatics.sokovando.elements.*;
 import org.academiadecodigo.bootcamp.Sound;
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import javax.swing.*;
 import java.util.Timer;
-
 
 public class Game {
 
     int currentLevelIndex = 1;
     int numberOfLevels = 5;
-    int itDoesntMatter = 0;
     Position[] currentLevel;
     Position[] level;
     Position[] level2;
@@ -38,7 +34,8 @@ public class Game {
 
     public Game(){
         this.keyboard =  new KeyboardListener();
-        keyboard.setup(this);
+        keyboard.setGame(this);
+        keyboard.setup();
     }
 
     // Creates objects of the level
@@ -92,12 +89,12 @@ public class Game {
         // End of Outside Walls
 
         // Boxes
-        level[40] = new Box (400,100);
-        level[41] = new Box (150,100);
-        level[42] = new Box (300,300);
+        level[40] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(400,100);
+        level[41] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(150,100);
+        level[42] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,300);
 
         // Spots
-        level[43] = new Spot (400,350);
+        level[43] = new Spot(400,350);
         level[44] = new Spot (350,400);
         level[45] = new Spot (400,400);
 
@@ -188,14 +185,14 @@ public class Game {
         level2[42] = new Wall(450, 500);
 
         // Boxes
-        level2[43] = new Box (200,200);
-        level2[44] = new Box (250,200);
-        level2[45] = new Box (300,200);
-        level2[46] = new Box (200,250);
-        level2[47] = new Box (300,250);
-        level2[48] = new Box (200,300);
-        level2[49] = new Box (250,300);
-        level2[50] = new Box (300,300);
+        level2[43] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200,200);
+        level2[44] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250,200);
+        level2[45] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,200);
+        level2[46] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200,250);
+        level2[47] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,250);
+        level2[48] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200,300);
+        level2[49] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250,300);
+        level2[50] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,300);
 
         // Spots
         level2[51] = new Spot (50,50);
@@ -277,10 +274,10 @@ public class Game {
         level3[42] = new Wall(450, 500);
 
         // Boxes
-        level3[43] = new Box (300,150);
-        level3[44] = new Box (250,100);
-        level3[45] = new Box (200,100);
-        level3[46] = new Box (300,250);
+        level3[43] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,150);
+        level3[44] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250,100);
+        level3[45] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200,100);
+        level3[46] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,250);
 
 
         // Spots
@@ -454,14 +451,14 @@ public class Game {
 
         //  Boxes
 
-        level4[112] = new Box(250, 200);
-        level4[113] = new Box(400, 200);
-        level4[114] = new Box(500, 200);
-        level4[115] = new Box(500, 250);
-        level4[116] = new Box(450, 300);
-        level4[117] = new Box(150, 400);
-        level4[118] = new Box(250, 400);
-        level4[119] = new Box(500, 400);
+        level4[112] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 200);
+        level4[113] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(400, 200);
+        level4[114] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(500, 200);
+        level4[115] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(500, 250);
+        level4[116] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(450, 300);
+        level4[117] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(150, 400);
+        level4[118] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 400);
+        level4[119] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(500, 400);
 
         // Spots
 
@@ -536,45 +533,45 @@ public class Game {
         level5[48] = new Wall(600, 0);
 
         // Boxes
-        level5[49] = new Box(100, 150);
-        level5[50] = new Box(100, 250);
-        level5[51] = new Box(100, 350);
-        level5[52] = new Box(100, 450);
-        level5[53] = new Box(150, 100);
-        level5[54] = new Box(150, 200);
-        level5[55] = new Box(150, 300);
-        level5[56] = new Box(150, 400);
-        level5[57] = new Box(150, 500);
-        level5[58] = new Box(200, 150);
-        level5[59] = new Box(200, 250);
-        level5[60] = new Box(200, 350);
-        level5[61] = new Box(200, 450);
-        level5[62] = new Box(250, 100);
-        level5[63] = new Box(250, 200);
-        level5[64] = new Box(250, 300);
-        level5[65] = new Box(250, 400);
-        level5[66] = new Box(250, 500);
-        level5[67] = new Box(300, 150);
-        level5[68] = new Box(300, 250);
-        level5[69] = new Box(300, 350);
-        level5[70] = new Box(300, 450);
-        level5[71] = new Box(350, 100);
-        level5[72] = new Box(350, 200);
-        level5[73] = new Box(350, 300);
-        level5[74] = new Box(350, 400);
-        level5[75] = new Box(350, 500);
-        level5[76] = new Box(400, 150);
-        level5[77] = new Box(400, 250);
-        level5[78] = new Box(400, 350);
-        level5[79] = new Box(400, 450);
-        level5[80] = new Box(450, 100);
-        level5[81] = new Box(450, 200);
-        level5[82] = new Box(450, 300);
-        level5[83] = new Box(450, 400);
-        level5[84] = new Box(450, 500);
-        level5[85] = new Box(500, 150);
-        level5[86] = new Box(500, 250);
-        level5[87] = new Box(500, 350);
+        level5[49] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(100, 150);
+        level5[50] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(100, 250);
+        level5[51] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(100, 350);
+        level5[52] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(100, 450);
+        level5[53] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(150, 100);
+        level5[54] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(150, 200);
+        level5[55] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(150, 300);
+        level5[56] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(150, 400);
+        level5[57] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(150, 500);
+        level5[58] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200, 150);
+        level5[59] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200, 250);
+        level5[60] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200, 350);
+        level5[61] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200, 450);
+        level5[62] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 100);
+        level5[63] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 200);
+        level5[64] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 300);
+        level5[65] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 400);
+        level5[66] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 500);
+        level5[67] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 150);
+        level5[68] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 250);
+        level5[69] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 350);
+        level5[70] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 450);
+        level5[71] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(350, 100);
+        level5[72] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(350, 200);
+        level5[73] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(350, 300);
+        level5[74] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(350, 400);
+        level5[75] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(350, 500);
+        level5[76] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(400, 150);
+        level5[77] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(400, 250);
+        level5[78] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(400, 350);
+        level5[79] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(400, 450);
+        level5[80] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(450, 100);
+        level5[81] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(450, 200);
+        level5[82] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(450, 300);
+        level5[83] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(450, 400);
+        level5[84] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(450, 500);
+        level5[85] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(500, 150);
+        level5[86] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(500, 250);
+        level5[87] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(500, 350);
         level5[88] = new Box(500, 450);
 
         // Spots
@@ -733,7 +730,7 @@ public class Game {
                 background.draw();
                 loadLevel1();
                 player = new Player(150,150);
-                player.playerShape.draw();
+                player.getPlayerShape().draw();
                 currentLevel = level;
                 break;
 
@@ -742,7 +739,7 @@ public class Game {
                 background.draw();
                 loadLevel2();
                 player = new Player(250, 250);
-                player.playerShape.draw();
+                player.getPlayerShape().draw();
                 currentLevel = level2;
                 break;
 
@@ -751,7 +748,7 @@ public class Game {
                 background.draw();
                 loadLevel3();
                 player = new Player(300, 50);
-                player.playerShape.draw();
+                player.getPlayerShape().draw();
                 currentLevel = level3;
                 break;
 
@@ -775,7 +772,7 @@ public class Game {
                                 background.draw();
                                 loadLevel4();
                                 player = new Player(200, 300);
-                                player.playerShape.draw();
+                                player.getPlayerShape().draw();
                                 currentLevel = level4;
                                 t3.cancel();
                                 setStarted(true);
@@ -800,7 +797,7 @@ public class Game {
                                 background.draw();
                                 loadLevel5();
                                 player = new Player(300, 300);
-                                player.playerShape.draw();
+                                player.getPlayerShape().draw();
                                 currentLevel = level5;
                                 t4.cancel();
                                 setStarted(true);
@@ -814,7 +811,7 @@ public class Game {
         if (currentLevelIndex > numberOfLevels) {
             System.out.println("You are a beast!! You deserve a clap from Leandro and one 'Até já' from you know who");
             win = new Picture(0,0, "/resources/youwin.png");
-            player.playerShape.delete();
+            player.getPlayerShape().delete();
             win.draw();
         }
     }
