@@ -1,5 +1,7 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
+import org.academiadecodigo.asynctomatics.sokovando.elements.*;
+
 import java.util.LinkedList;
 
 public class CollisionDetector {

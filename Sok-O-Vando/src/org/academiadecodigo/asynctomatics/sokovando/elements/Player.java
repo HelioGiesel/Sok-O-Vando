@@ -1,7 +1,10 @@
 
-package org.academiadecodigo.asynctomatics.sokovando;
+package org.academiadecodigo.asynctomatics.sokovando.elements;
 
 
+import org.academiadecodigo.asynctomatics.sokovando.CollisionDetector;
+import org.academiadecodigo.asynctomatics.sokovando.Directions;
+import org.academiadecodigo.asynctomatics.sokovando.WinningException;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends Position {
@@ -15,8 +18,10 @@ public class Player extends Position {
 
         this.playerShape = new Picture(x,y,"resources/playerDownIcon.png");
         playerShape.draw();
+    }
 
-        this.playerShape = playerShape;
+    public Picture getPlayerShape() {
+        return playerShape;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package org.academiadecodigo.asynctomatics.sokovando;
+package org.academiadecodigo.asynctomatics.sokovando.elements;
 
 public abstract class Position {
 

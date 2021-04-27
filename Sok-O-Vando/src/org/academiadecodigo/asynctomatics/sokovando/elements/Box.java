@@ -1,8 +1,9 @@
 
-package org.academiadecodigo.asynctomatics.sokovando;
+package org.academiadecodigo.asynctomatics.sokovando.elements;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.asynctomatics.sokovando.CollisionDetector;
+import org.academiadecodigo.asynctomatics.sokovando.Directions;
+import org.academiadecodigo.asynctomatics.sokovando.WinningException;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Box extends Position {
