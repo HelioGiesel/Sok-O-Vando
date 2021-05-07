@@ -1,6 +1,7 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
+import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 
 import java.util.LinkedList;
 

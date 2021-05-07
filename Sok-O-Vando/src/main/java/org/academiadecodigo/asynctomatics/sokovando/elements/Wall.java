@@ -6,7 +6,7 @@ public class Wall extends Position {
 
     Picture wallShape;
 
-    public Wall(int x, int y){
+    public Wall(int x, int y) {
         super(x, y);
 
         wallShape = new Picture(x, y, "resources/wall_Icon.png");

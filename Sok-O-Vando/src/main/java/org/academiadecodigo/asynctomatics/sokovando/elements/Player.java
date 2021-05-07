@@ -4,7 +4,7 @@ package org.academiadecodigo.asynctomatics.sokovando.elements;
 
 import org.academiadecodigo.asynctomatics.sokovando.CollisionDetector;
 import org.academiadecodigo.asynctomatics.sokovando.Directions;
-import org.academiadecodigo.asynctomatics.sokovando.WinningException;
+import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends Position {
@@ -13,10 +13,10 @@ public class Player extends Position {
     Position[] level;
 
 
-    public Player(int x, int y){
-        super(x,y);
+    public Player(int x, int y) {
+        super(x, y);
 
-        this.playerShape = new Picture(x,y,"resources/playerDownIcon.png");
+        this.playerShape = new Picture(x, y, "resources/playerDownIcon.png");
         playerShape.draw();
     }
 
@@ -29,8 +29,8 @@ public class Player extends Position {
         this.playerShape.delete();
     }
 
-    public String getPlayerIconDirection(Directions direction){
-        switch (direction){
+    public String getPlayerIconDirection(Directions direction) {
+        switch (direction) {
             case UP:
                 return "resources/playerUpIcon.png";
 
@@ -54,10 +54,10 @@ public class Player extends Position {
 
         boolean canMove = false;
 
-        switch (direction){
+        switch (direction) {
             case UP:
                 ghostPosition.setY(getY() - CELLSIZE);
-                canMove = !(CollisionDetector.isColliding(level , ghostPosition, direction));
+                canMove = !(CollisionDetector.isColliding(level, ghostPosition, direction));
                 break;
             case DOWN:
                 ghostPosition.setY(getY() + CELLSIZE);
@@ -87,7 +87,7 @@ public class Player extends Position {
         switch (direction) {
             case UP:
                 this.setY(getY() - CELLSIZE);
-                this.playerShape.translate(0,-CELLSIZE);
+                this.playerShape.translate(0, -CELLSIZE);
                 break;
             case DOWN:
                 this.setY(getY() + CELLSIZE);

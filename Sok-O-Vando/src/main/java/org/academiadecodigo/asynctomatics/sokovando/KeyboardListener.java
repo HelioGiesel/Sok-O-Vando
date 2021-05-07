@@ -38,8 +38,9 @@ public class KeyboardListener implements KeyboardHandler {
     }
 
     @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {}
-    
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+    }
+
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
 

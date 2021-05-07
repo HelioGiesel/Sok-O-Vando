@@ -1,6 +1,7 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
+import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -27,19 +28,19 @@ public class Game {
     boolean started = false;
     boolean restartedLevel = false;
     Sound menu = new Sound("/resources/startScreen.wav");
-    Sound gameCoin =  new Sound("/resources/gamecoin.wav");
+    Sound gameCoin = new Sound("/resources/gamecoin.wav");
     Sound main = new Sound("/resources/main.wav");
-    Sound laugh = new Sound ("/resources/evilLaugh.wav");
+    Sound laugh = new Sound("/resources/evilLaugh.wav");
     Sound main2 = new Sound("/resources/level4_5.wav");
 
-    public Game(){
-        this.keyboard =  new KeyboardListener();
+    public Game() {
+        this.keyboard = new KeyboardListener();
         keyboard.setGame(this);
         keyboard.setup();
     }
 
     // Creates objects of the level
-    public void loadLevel1(){
+    public void loadLevel1() {
 
         level = new Position[65];
 
@@ -89,14 +90,14 @@ public class Game {
         // End of Outside Walls
 
         // Boxes
-        level[40] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(400,100);
-        level[41] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(150,100);
-        level[42] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,300);
+        level[40] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(400, 100);
+        level[41] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(150, 100);
+        level[42] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 300);
 
         // Spots
-        level[43] = new Spot(400,350);
-        level[44] = new Spot (350,400);
-        level[45] = new Spot (400,400);
+        level[43] = new Spot(400, 350);
+        level[44] = new Spot(350, 400);
+        level[45] = new Spot(400, 400);
 
         // Inside walls
         level[46] = new Wall(200, 50);
@@ -123,8 +124,9 @@ public class Game {
         level[64] = new Wall(100, 350);
 
     }
+
     // Creates objects of the level
-    public void loadLevel2(){
+    public void loadLevel2() {
 
         level2 = new Position[63];
         // Top walls
@@ -139,7 +141,7 @@ public class Game {
         level2[7] = new Wall(350, 0);
         level2[8] = new Wall(400, 0);
         level2[9] = new Wall(450, 0);
-        level2[10] = new Wall (500, 0);
+        level2[10] = new Wall(500, 0);
 
 
         // Right walls
@@ -153,7 +155,7 @@ public class Game {
         level2[17] = new Wall(500, 350);
         level2[18] = new Wall(500, 400);
         level2[19] = new Wall(500, 450);
-        level2[20] = new Wall(500,500);
+        level2[20] = new Wall(500, 500);
 
 
         // Left walls
@@ -169,7 +171,7 @@ public class Game {
         level2[29] = new Wall(0, 350);
         level2[30] = new Wall(0, 400);
         level2[31] = new Wall(0, 450);
-        level2[32] = new Wall(0,500);
+        level2[32] = new Wall(0, 500);
 
         // Bottom walls
 
@@ -185,22 +187,22 @@ public class Game {
         level2[42] = new Wall(450, 500);
 
         // Boxes
-        level2[43] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200,200);
-        level2[44] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250,200);
-        level2[45] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,200);
-        level2[46] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200,250);
-        level2[47] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,250);
-        level2[48] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200,300);
-        level2[49] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250,300);
-        level2[50] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,300);
+        level2[43] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200, 200);
+        level2[44] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 200);
+        level2[45] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 200);
+        level2[46] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200, 250);
+        level2[47] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 250);
+        level2[48] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200, 300);
+        level2[49] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 300);
+        level2[50] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 300);
 
         // Spots
-        level2[51] = new Spot (50,50);
-        level2[52] = new Spot (450,50);
-        level2[53] = new Spot (450,450);
-        level2[54] = new Spot (50,450);
-        level2[55] = new Spot (150,200);
-        level2[56] = new Spot (350,200);
+        level2[51] = new Spot(50, 50);
+        level2[52] = new Spot(450, 50);
+        level2[53] = new Spot(450, 450);
+        level2[54] = new Spot(50, 450);
+        level2[55] = new Spot(150, 200);
+        level2[56] = new Spot(350, 200);
         level2[57] = new Spot(150, 300);
         level2[58] = new Spot(350, 300);
 
@@ -212,8 +214,9 @@ public class Game {
         level2[62] = new Wall(150, 350);
 
     }
+
     // Creates objects of the level
-    public void loadLevel3(){
+    public void loadLevel3() {
 
         level3 = new Position[84];
 
@@ -229,7 +232,7 @@ public class Game {
         level3[7] = new Wall(350, 0);
         level3[8] = new Wall(400, 0);
         level3[9] = new Wall(450, 0);
-        level3[10] = new Wall (500, 0);
+        level3[10] = new Wall(500, 0);
 
         // Right walls
 
@@ -242,7 +245,7 @@ public class Game {
         level3[17] = new Wall(500, 350);
         level3[18] = new Wall(500, 400);
         level3[19] = new Wall(500, 450);
-        level3[20] = new Wall(500,500);
+        level3[20] = new Wall(500, 500);
 
         // Left walls
 
@@ -257,7 +260,7 @@ public class Game {
         level3[29] = new Wall(0, 350);
         level3[30] = new Wall(0, 400);
         level3[31] = new Wall(0, 450);
-        level3[32] = new Wall(0,500);
+        level3[32] = new Wall(0, 500);
 
 
         // Right walls
@@ -274,19 +277,17 @@ public class Game {
         level3[42] = new Wall(450, 500);
 
         // Boxes
-        level3[43] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,150);
-        level3[44] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250,100);
-        level3[45] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200,100);
-        level3[46] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300,250);
+        level3[43] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 150);
+        level3[44] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(250, 100);
+        level3[45] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(200, 100);
+        level3[46] = new org.academiadecodigo.asynctomatics.sokovando.elements.Box(300, 250);
 
 
         // Spots
-        level3[47] = new Spot (200,450);
-        level3[48] = new Spot (250,450);
-        level3[49] = new Spot (200,400);
-        level3[50] = new Spot (150,250);
-
-
+        level3[47] = new Spot(200, 450);
+        level3[48] = new Spot(250, 450);
+        level3[49] = new Spot(200, 400);
+        level3[50] = new Spot(150, 250);
 
 
         // Inside walls
@@ -326,8 +327,9 @@ public class Game {
 
 
     }
+
     // Creates objects of the level
-    public void loadLevel4(){
+    public void loadLevel4() {
 
         level4 = new Position[129];
 
@@ -352,7 +354,7 @@ public class Game {
         level4[17] = new Wall(600, 250);
         level4[18] = new Wall(600, 300);
         level4[19] = new Wall(600, 350);
-        level4[20] = new Wall(600,400);
+        level4[20] = new Wall(600, 400);
         level4[21] = new Wall(600, 450);
         level4[22] = new Wall(600, 500);
         level4[23] = new Wall(600, 550);
@@ -377,31 +379,31 @@ public class Game {
         level4[40] = new Wall(200, 600);
         level4[41] = new Wall(250, 600);
         level4[42] = new Wall(300, 600);
-        level4[43] = new Wall(350,600);
-        level4[44] = new Wall(400,600);
-        level4[45] = new Wall(450,600);
-        level4[46] = new Wall(500,600);
-        level4[47] = new Wall(550,600);
+        level4[43] = new Wall(350, 600);
+        level4[44] = new Wall(400, 600);
+        level4[45] = new Wall(450, 600);
+        level4[46] = new Wall(500, 600);
+        level4[47] = new Wall(550, 600);
         level4[48] = new Wall(0, 600);
 
         // Inside walls
-        level4[49] = new Wall(50,  50);
-        level4[50] = new Wall(50,  100);
-        level4[51] = new Wall(50,  150);
-        level4[52] = new Wall(50,  200);
-        level4[53] = new Wall(50,  250);
-        level4[54] = new Wall(50,  300);
-        level4[55] = new Wall(50,  350);
-        level4[56] = new Wall(50,  400);
-        level4[57] = new Wall(50,  450);
-        level4[58] = new Wall(50,  500);
-        level4[59] = new Wall(50,  550);
-        level4[60] = new Wall(100,  50);
-        level4[61] = new Wall(150,  50);
-        level4[62] = new Wall(200,  50);
-        level4[63] = new Wall(250,  50);
-        level4[64] = new Wall(300,  50);
-        level4[65] = new Wall(500,  50);
+        level4[49] = new Wall(50, 50);
+        level4[50] = new Wall(50, 100);
+        level4[51] = new Wall(50, 150);
+        level4[52] = new Wall(50, 200);
+        level4[53] = new Wall(50, 250);
+        level4[54] = new Wall(50, 300);
+        level4[55] = new Wall(50, 350);
+        level4[56] = new Wall(50, 400);
+        level4[57] = new Wall(50, 450);
+        level4[58] = new Wall(50, 500);
+        level4[59] = new Wall(50, 550);
+        level4[60] = new Wall(100, 50);
+        level4[61] = new Wall(150, 50);
+        level4[62] = new Wall(200, 50);
+        level4[63] = new Wall(250, 50);
+        level4[64] = new Wall(300, 50);
+        level4[65] = new Wall(500, 50);
         level4[66] = new Wall(100, 100);
         level4[67] = new Wall(150, 100);
         level4[68] = new Wall(200, 100);
@@ -471,11 +473,12 @@ public class Game {
         level4[126] = new Spot(350, 400);
         level4[127] = new Spot(350, 450);
 
-        level4[128] = new Wall (550,50);
+        level4[128] = new Wall(550, 50);
 
     }
+
     // Creates objects of the level
-    public void loadLevel5(){
+    public void loadLevel5() {
 
         level5 = new Position[129];
 
@@ -500,7 +503,7 @@ public class Game {
         level5[17] = new Wall(600, 250);
         level5[18] = new Wall(600, 300);
         level5[19] = new Wall(600, 350);
-        level5[20] = new Wall(600,400);
+        level5[20] = new Wall(600, 400);
         level5[21] = new Wall(600, 450);
         level5[22] = new Wall(600, 500);
         level5[23] = new Wall(600, 550);
@@ -525,11 +528,11 @@ public class Game {
         level5[40] = new Wall(200, 600);
         level5[41] = new Wall(250, 600);
         level5[42] = new Wall(300, 600);
-        level5[43] = new Wall(350,600);
-        level5[44] = new Wall(400,600);
-        level5[45] = new Wall(450,600);
-        level5[46] = new Wall(500,600);
-        level5[47] = new Wall(550,600);
+        level5[43] = new Wall(350, 600);
+        level5[44] = new Wall(400, 600);
+        level5[45] = new Wall(450, 600);
+        level5[46] = new Wall(500, 600);
+        level5[47] = new Wall(550, 600);
         level5[48] = new Wall(600, 0);
 
         // Boxes
@@ -619,7 +622,7 @@ public class Game {
 
     }
 
-    public void movePlayer(Directions directions){
+    public void movePlayer(Directions directions) {
         try {
 
             if (currentLevelIndex <= numberOfLevels) {
@@ -650,7 +653,7 @@ public class Game {
         }
     }
 
-    public void restartLevel(){
+    public void restartLevel() {
 
         for (Position element : currentLevel) element.deleteShape();
         player.deleteShape();
@@ -658,7 +661,7 @@ public class Game {
         init();
     }
 
-    public void setStarted(boolean started){
+    public void setStarted(boolean started) {
         this.started = started;
     }
 
@@ -672,7 +675,7 @@ public class Game {
 
         boolean runForest = true;
 
-        while(!started) {
+        while (!started) {
             System.out.println("Why?!");
             if (runForest) {
                 startMenu = new Picture(0, 0, "resources/startMenu.png");
@@ -691,7 +694,7 @@ public class Game {
         startMenu.delete();
     }
 
-    public void levelTransition(){
+    public void levelTransition() {
         switch (currentLevelIndex) {
 
             case 2:
@@ -722,14 +725,14 @@ public class Game {
         }
     }
 
-    public void init(){
+    public void init() {
 
         switch (currentLevelIndex) {
             case 1:
-                background = new Picture (0,0, "resources/background500.png");
+                background = new Picture(0, 0, "resources/background500.png");
                 background.draw();
                 loadLevel1();
-                player = new Player(150,150);
+                player = new Player(150, 150);
                 player.getPlayerShape().draw();
                 currentLevel = level;
                 break;
@@ -758,7 +761,7 @@ public class Game {
                 main2.stop();
                 laugh.play(true);
                 //Keep transition when level is restarted
-                level4Transition = new Picture(0,0, "resources/level4Transition.png");
+                level4Transition = new Picture(0, 0, "resources/level4Transition.png");
                 level4Transition.draw();
                 setStarted(false);
                 Timer t3 = new java.util.Timer();
@@ -768,7 +771,7 @@ public class Game {
                             public void run() {
                                 level4Transition.delete();
                                 main2.play(true);
-                                background = new Picture (0,0, "resources/background600.png");
+                                background = new Picture(0, 0, "resources/background600.png");
                                 background.draw();
                                 loadLevel4();
                                 player = new Player(200, 300);
@@ -784,7 +787,7 @@ public class Game {
 
             case 5:
                 player = null;
-                levelClear600 = new Picture (0,0, "resources/levelClear600.png");
+                levelClear600 = new Picture(0, 0, "resources/levelClear600.png");
                 levelClear600.draw();
                 setStarted(false);
                 Timer t4 = new java.util.Timer();
@@ -803,14 +806,14 @@ public class Game {
                                 setStarted(true);
                             }
                         },
-                            3000
+                        3000
                 );
                 break;
         }
 
         if (currentLevelIndex > numberOfLevels) {
             System.out.println("You are a beast!! You deserve a clap from Leandro and one 'Até já' from you know who");
-            win = new Picture(0,0, "/resources/youwin.png");
+            win = new Picture(0, 0, "/resources/youwin.png");
             player.getPlayerShape().delete();
             win.draw();
         }

@@ -3,7 +3,7 @@ package org.academiadecodigo.asynctomatics.sokovando.elements;
 
 import org.academiadecodigo.asynctomatics.sokovando.CollisionDetector;
 import org.academiadecodigo.asynctomatics.sokovando.Directions;
-import org.academiadecodigo.asynctomatics.sokovando.WinningException;
+import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Box extends Position {
@@ -11,10 +11,10 @@ public class Box extends Position {
 
     Picture boxShape;
 
-    public Box(int x, int y){
+    public Box(int x, int y) {
         super(x, y);
 
-        boxShape = new Picture(x, y,"resources/jsIcon.png");
+        boxShape = new Picture(x, y, "resources/jsIcon.png");
         boxShape.draw();
 
     }
@@ -30,7 +30,7 @@ public class Box extends Position {
 
         boolean canMove = false;
 
-        switch (direction){
+        switch (direction) {
             case UP:
                 ghostPosition.setY(getY() - CELLSIZE);
                 canMove = !(CollisionDetector.isColliding(level, ghostPosition, direction));
@@ -74,7 +74,7 @@ public class Box extends Position {
         }
 
         boxShape.delete();
-        boxShape = new Picture(getX(), getY(),"resources/jsIcon.png");
+        boxShape = new Picture(getX(), getY(), "resources/jsIcon.png");
         boxShape.draw();
 
         CollisionDetector.checkSpots(level);

@@ -14,7 +14,7 @@ public class levelBuilder {
     public static List<Position> buildLevel(String levelString) {
 
         List<Position> levelCreated = Arrays.stream(levelString.split(";"))
-                .map( s -> buildElementShape(s))
+                .map(s -> buildElementShape(s))
                 .collect(Collectors.toList());
 
         return levelCreated;
@@ -26,9 +26,9 @@ public class levelBuilder {
         int x = Integer.parseInt(elementInfo.split(",")[1]);
         int y = Integer.parseInt(elementInfo.split(",")[2]);
 
-        if (shape == 'W') return new Wall(x,y);
-        if (shape == 's') return new Spot(x,y);
-        if (shape == 'b') return new Box(x,y);
+        if (shape == 'W') return new Wall(x, y);
+        if (shape == 's') return new Spot(x, y);
+        if (shape == 'b') return new Box(x, y);
 
         return null;
 
