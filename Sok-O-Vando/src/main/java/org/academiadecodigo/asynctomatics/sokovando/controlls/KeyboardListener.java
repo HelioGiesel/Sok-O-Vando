@@ -1,5 +1,6 @@
-package org.academiadecodigo.asynctomatics.sokovando;
+package org.academiadecodigo.asynctomatics.sokovando.controlls;
 
+import org.academiadecodigo.asynctomatics.sokovando.Game;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;

@@ -3,7 +3,7 @@ package org.academiadecodigo.asynctomatics.sokovando.elements;
 
 
 import org.academiadecodigo.asynctomatics.sokovando.CollisionDetector;
-import org.academiadecodigo.asynctomatics.sokovando.Directions;
+import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 

@@ -1,5 +1,7 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
+import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
+import org.academiadecodigo.asynctomatics.sokovando.controlls.KeyboardListener;
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
 import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.academiadecodigo.bootcamp.Sound;
@@ -25,7 +27,7 @@ public class Game {
     Picture levelClear;
     Picture levelClear600;
     Picture win;
-    boolean started = false;
+    public boolean started = false;
     boolean restartedLevel = false;
     Sound menu = new Sound("/resources/startScreen.wav");
     Sound gameCoin = new Sound("/resources/gamecoin.wav");
