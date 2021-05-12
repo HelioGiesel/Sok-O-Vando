@@ -1,4 +1,4 @@
-package org.academiadecodigo.asynctomatics.sokovando;
+package org.academiadecodigo.asynctomatics.sokovando.controlls;
 
 public enum Directions {
 

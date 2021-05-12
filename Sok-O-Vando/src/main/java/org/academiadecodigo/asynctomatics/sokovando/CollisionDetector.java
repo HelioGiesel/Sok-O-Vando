@@ -1,5 +1,6 @@
 package org.academiadecodigo.asynctomatics.sokovando;
 
+import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
 import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 
@@ -53,7 +54,6 @@ public class CollisionDetector {
         }
 
         if ((validation == spotList.size()) && (validation != 0)) {
-            System.out.println("Ganhou modafoca!!!!!");
 
             for (int i = 0; i < gameObjects.length; i++) gameObjects[i].deleteShape();
 
