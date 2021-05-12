@@ -49,7 +49,7 @@ public class KeyboardListener implements KeyboardHandler {
             System.exit(1);
         }
 
-        if (game.started) {
+        if (game.isStarted()) {
 
             switch (keyboardEvent.getKey()) {
                 case KeyboardEvent.KEY_UP:

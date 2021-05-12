@@ -27,7 +27,7 @@ public class Game {
     Picture levelClear;
     Picture levelClear600;
     Picture win;
-    public boolean started = false;
+    private boolean started = false;
     boolean restartedLevel = false;
     Sound menu = new Sound("/resources/startScreen.wav");
     Sound gameCoin = new Sound("/resources/gamecoin.wav");
@@ -39,6 +39,10 @@ public class Game {
         this.keyboard = new KeyboardListener();
         keyboard.setGame(this);
         keyboard.setup();
+    }
+
+    public boolean isStarted() {
+        return started;
     }
 
     // Creates objects of the level
