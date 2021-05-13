@@ -1,6 +1,13 @@
 package org.academiadecodigo.asynctomatics.sokovando.controlls;
 
+import org.academiadecodigo.asynctomatics.sokovando.Game;
+import org.academiadecodigo.asynctomatics.sokovando.TerminationSwitch;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.mockito.Mockito.*;
 
 public class KeyboardListenerTest {
 
@@ -17,10 +24,21 @@ public class KeyboardListenerTest {
     }
 
     @Test
-    private void testShouldDoNothingWhenKeyPressed() {
-        KeyboardListener keyboardListener = new KeyboardListener();
+    public void testShouldExitIfKeyQIsReleased() {
+        // given
+        KeyboardEvent keyboardEvent = new KeyboardEvent();
+        keyboardEvent.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboardEvent.setKey(KeyboardEvent.KEY_Q);
 
-        keyboardListener.keyPressed(null);
+        Game game = mock(Game.class);
+        keyboardListener.setGame(game);
+        when(game.isStarted()).thenReturn(true);
+
+        // when
+        keyboardListener.keyReleased(keyboardEvent);
+
+        // then
+        verify(terminationSwitch).terminateGame();
     }
 
     @Test

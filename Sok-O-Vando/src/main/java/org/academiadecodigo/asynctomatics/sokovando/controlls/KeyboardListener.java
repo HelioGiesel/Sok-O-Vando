@@ -56,7 +56,6 @@ public class KeyboardListener implements KeyboardHandler {
         }
 
         if (game.isStarted()) {
-
             switch (keyboardEvent.getKey()) {
                 case KeyboardEvent.KEY_UP:
                     game.movePlayer(Directions.UP);
@@ -78,11 +77,9 @@ public class KeyboardListener implements KeyboardHandler {
                     game.restartLevel();
                     break;
             }
-
         } else {
-
-            if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) game.setStarted(true);
-
+            if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE)
+                game.setStarted(true);
         }
     }
 }
