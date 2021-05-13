@@ -58,6 +58,10 @@ public class KeyboardListenerTest {
         // then
         verify(game).movePlayer(Directions.UP);
         verifyZeroInteractions(terminationSwitch);
+        verify(game, never()).movePlayer(Directions.DOWN);
+        verify(game, never()).movePlayer(Directions.LEFT);
+        verify(game, never()).movePlayer(Directions.RIGHT);
+        verify(game, never()).restartLevel();
     }
 
     @Test
@@ -76,6 +80,10 @@ public class KeyboardListenerTest {
 
         // then
         verify(game).movePlayer(Directions.DOWN);
+        verify(game, never()).movePlayer(Directions.UP);
+        verify(game, never()).movePlayer(Directions.LEFT);
+        verify(game, never()).movePlayer(Directions.RIGHT);
+        verify(game, never()).restartLevel();
     }
 
     @Test
@@ -94,6 +102,10 @@ public class KeyboardListenerTest {
 
         // then
         verify(game).movePlayer(Directions.LEFT);
+        verify(game, never()).movePlayer(Directions.DOWN);
+        verify(game, never()).movePlayer(Directions.UP);
+        verify(game, never()).movePlayer(Directions.RIGHT);
+        verify(game, never()).restartLevel();
     }
 
     @Test
@@ -112,6 +124,10 @@ public class KeyboardListenerTest {
 
         // then
         verify(game).movePlayer(Directions.RIGHT);
+        verify(game, never()).movePlayer(Directions.DOWN);
+        verify(game, never()).movePlayer(Directions.LEFT);
+        verify(game, never()).movePlayer(Directions.UP);
+        verify(game, never()).restartLevel();
     }
 
     @Test
@@ -130,6 +146,10 @@ public class KeyboardListenerTest {
 
         // then
         verify(game).restartLevel();
+        verify(game, never()).movePlayer(Directions.DOWN);
+        verify(game, never()).movePlayer(Directions.LEFT);
+        verify(game, never()).movePlayer(Directions.RIGHT);
+        verify(game, never()).movePlayer(Directions.UP);
     }
 
     @Test
@@ -148,6 +168,11 @@ public class KeyboardListenerTest {
 
         // then
         verify(game).setStarted(true);
+        verify(game, never()).movePlayer(Directions.DOWN);
+        verify(game, never()).movePlayer(Directions.LEFT);
+        verify(game, never()).movePlayer(Directions.RIGHT);
+        verify(game, never()).movePlayer(Directions.UP);
+        verify(game, never()).restartLevel();
     }
 
 }
