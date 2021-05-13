@@ -37,6 +37,7 @@ public class Game {
 
     public Game() {
         this.keyboard = new KeyboardListener();
+        keyboard.setTerminationSwitch(new TerminationSwitch());
         keyboard.setGame(this);
         keyboard.setup();
     }
