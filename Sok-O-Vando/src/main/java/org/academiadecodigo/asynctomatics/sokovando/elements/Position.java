@@ -1,8 +1,11 @@
 package org.academiadecodigo.asynctomatics.sokovando.elements;
 
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 public abstract class Position {
 
     public static final int CELLSIZE = 50;
+    private Picture elementShape;
     private int x;
     private int y;
 
@@ -27,6 +30,14 @@ public abstract class Position {
         this.y = newY;
     }
 
-    public abstract void deleteShape();
+    public Picture initShape(String elementShapeReference) {
+        this.elementShape = new Picture(x, y, elementShapeReference);
+        this.elementShape.draw();
+        return this.elementShape;
+    }
+
+    public void deleteShape() {
+        this.elementShape.delete();
+    };
 
 }

@@ -7,5 +7,4 @@ public class StartPoint {
         Game game = new Game();
         game.initMenu();
     }
-
 }

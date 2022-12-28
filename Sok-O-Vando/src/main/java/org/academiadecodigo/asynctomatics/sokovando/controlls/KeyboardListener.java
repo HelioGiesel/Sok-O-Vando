@@ -79,7 +79,7 @@ public class KeyboardListener implements KeyboardHandler {
             }
         } else {
             if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE)
-                game.setStarted(true);
+                game.afterInitMenu();
         }
     }
 }

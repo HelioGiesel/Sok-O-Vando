@@ -15,18 +15,11 @@ public class Player extends Position {
 
     public Player(int x, int y) {
         super(x, y);
-
-        this.playerShape = new Picture(x, y, "resources/playerDownIcon.png");
-        playerShape.draw();
+        this.playerShape = super.initShape("resources/playerDownIcon.png");
     }
 
     public Picture getPlayerShape() {
         return playerShape;
-    }
-
-    @Override
-    public void deleteShape() {
-        this.playerShape.delete();
     }
 
     public String getPlayerIconDirection(Directions direction) {

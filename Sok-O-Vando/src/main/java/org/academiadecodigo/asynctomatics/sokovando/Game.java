@@ -631,7 +631,6 @@ public class Game {
 
     public void movePlayer(Directions directions) {
         try {
-
             if (currentLevelIndex <= numberOfLevels) {
                 switch (directions) {
                     case UP:
@@ -661,7 +660,6 @@ public class Game {
     }
 
     public void restartLevel() {
-
         for (Position element : currentLevel) element.deleteShape();
         player.deleteShape();
         setRestartedLevel(true);
@@ -680,21 +678,18 @@ public class Game {
 
         menu.play(true);
 
-        boolean runForest = true;
+        startMenu = new Picture(0, 0, "resources/startMenu.png");
+        startMenu.draw();
+    }
 
-        while (!started) {
-            System.out.println("Why?!");
-            if (runForest) {
-                startMenu = new Picture(0, 0, "resources/startMenu.png");
-                startMenu.draw();
-                runForest = false;
-            }
-        }
-        deleteStartMenu();
+
+    public void afterInitMenu() {
+        this.deleteStartMenu();
         menu.stop();
         gameCoin.play(true);
         levelTransition();
         main.play(true);
+        this.setStarted(true);
     }
 
     public void deleteStartMenu() {
