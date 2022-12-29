@@ -8,20 +8,12 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Box extends Position {
 
-
     Picture boxShape;
 
     public Box(int x, int y) {
         super(x, y);
+        this.boxShape = super.initShape("resources/jsIcon.png");
 
-        boxShape = new Picture(x, y, "resources/jsIcon.png");
-        boxShape.draw();
-
-    }
-
-    @Override
-    public void deleteShape() {
-        boxShape.delete();
     }
 
     public boolean checkMove(Directions direction, Position[] level) throws WinningException {

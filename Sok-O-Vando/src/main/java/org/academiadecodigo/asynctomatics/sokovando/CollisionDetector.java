@@ -3,7 +3,6 @@ package org.academiadecodigo.asynctomatics.sokovando;
 import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
 import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
-
 import java.util.LinkedList;
 
 public class CollisionDetector {

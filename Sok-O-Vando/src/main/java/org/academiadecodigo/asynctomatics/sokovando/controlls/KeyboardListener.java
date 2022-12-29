@@ -1,6 +1,7 @@
 package org.academiadecodigo.asynctomatics.sokovando.controlls;
 
 import org.academiadecodigo.asynctomatics.sokovando.Game;
+import org.academiadecodigo.asynctomatics.sokovando.TerminationSwitch;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -9,6 +10,11 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class KeyboardListener implements KeyboardHandler {
 
     private Game game;
+    private TerminationSwitch terminationSwitch;
+
+    public void setTerminationSwitch(TerminationSwitch terminationSwitch) {
+        this.terminationSwitch = terminationSwitch;
+    }
 
     public void setGame(Game game) {
         this.game = game;
@@ -46,11 +52,10 @@ public class KeyboardListener implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_Q) {
-            System.exit(1);
+            terminationSwitch.terminateGame();
         }
 
         if (game.isStarted()) {
-
             switch (keyboardEvent.getKey()) {
                 case KeyboardEvent.KEY_UP:
                     game.movePlayer(Directions.UP);
@@ -72,11 +77,9 @@ public class KeyboardListener implements KeyboardHandler {
                     game.restartLevel();
                     break;
             }
-
         } else {
-
-            if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) game.setStarted(true);
-
+            if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE)
+                game.afterInitMenu();
         }
     }
 }
