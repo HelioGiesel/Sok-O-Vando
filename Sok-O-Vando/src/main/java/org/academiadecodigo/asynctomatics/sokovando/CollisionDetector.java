@@ -3,11 +3,13 @@ package org.academiadecodigo.asynctomatics.sokovando;
 import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
 import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class CollisionDetector {
 
-    public static boolean isColliding(Position[] gameObjects, Position movingObject, Directions direction) throws WinningException {
+    public static boolean isColliding(ArrayList<Position> gameObjects, Position movingObject, Directions direction) throws WinningException {
 
         for (Position obstacle : gameObjects) {
 
@@ -30,7 +32,7 @@ public class CollisionDetector {
         return false;
     }
 
-    public static void checkSpots(Position[] gameObjects) throws WinningException {
+    public static void checkSpots(ArrayList<Position> gameObjects) throws WinningException {
 
         //run through array, collect spots and boxes, check if they are on same position
 
@@ -54,7 +56,7 @@ public class CollisionDetector {
 
         if ((validation == spotList.size()) && (validation != 0)) {
 
-            for (int i = 0; i < gameObjects.length; i++) gameObjects[i].deleteShape();
+            for (Position gameObject : gameObjects) gameObject.deleteShape();
 
             throw new WinningException();
 

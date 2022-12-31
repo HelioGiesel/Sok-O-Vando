@@ -1,20 +1,23 @@
-
 package org.academiadecodigo.asynctomatics.sokovando.elements;
-
 
 import org.academiadecodigo.asynctomatics.sokovando.CollisionDetector;
 import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.util.ArrayList;
+
 public class Player extends Position {
 
     Picture playerShape;
-    Position[] level;
+    ArrayList<Position> level;
 
 
     public Player(int x, int y) {
         super(x, y);
+    }
+
+    public void drawPlayer() {
         this.playerShape = super.initShape("resources/playerDownIcon.png");
     }
 
@@ -39,11 +42,12 @@ public class Player extends Position {
     }
 
 
-    public void checkMove(Directions direction, Position[] level) throws WinningException {
+    public void checkMove(Directions direction, ArrayList<Position> level) throws WinningException {
 
         this.level = level;
 
         Player ghostPosition = new Player(playerShape.getX(), playerShape.getY());
+        ghostPosition.drawPlayer();
 
         boolean canMove = false;
 

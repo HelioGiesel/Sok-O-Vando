@@ -6,6 +6,8 @@ import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.util.ArrayList;
+
 public class Box extends Position {
 
     Picture boxShape;
@@ -13,10 +15,9 @@ public class Box extends Position {
     public Box(int x, int y) {
         super(x, y);
         this.boxShape = super.initShape("resources/jsIcon.png");
-
     }
 
-    public boolean checkMove(Directions direction, Position[] level) throws WinningException {
+    public boolean checkMove(Directions direction, ArrayList<Position> level) throws WinningException {
 
         Box ghostPosition = new Box(boxShape.getX(), boxShape.getY());
 
@@ -49,7 +50,7 @@ public class Box extends Position {
 
     }
 
-    public void move(Directions direction, Position[] level) throws WinningException {
+    public void move(Directions direction, ArrayList<Position> level) throws WinningException {
         switch (direction) {
             case UP:
                 this.setY(getY() - CELLSIZE);

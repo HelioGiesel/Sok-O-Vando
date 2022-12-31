@@ -5,11 +5,13 @@ import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class BoxTest {
     private Box box;
-    private final Position[] level = new Position[5];
+    private final ArrayList<Position> level = new ArrayList<>();
     private final int cellSize = Position.CELLSIZE;
     private final int initialPositionX = cellSize;
     private final int initialPositionY = cellSize;
@@ -18,11 +20,11 @@ public class BoxTest {
     public void setup() {
         // given
         this.box = new Box(initialPositionX,initialPositionY);
-        level[0] = this.box;
-        level[1] = new Box(initialPositionX + cellSize, initialPositionY);
-        level[2] = new Wall(initialPositionX - cellSize, initialPositionY);
-        level[3] = new Spot(initialPositionX, initialPositionY + cellSize);
-        level[4] = new Spot(initialPositionX, initialPositionY + (2 * cellSize));
+        level.add(this.box);
+        level.add(new Box(initialPositionX + cellSize, initialPositionY));
+        level.add(new Wall(initialPositionX - cellSize, initialPositionY));
+        level.add(new Spot(initialPositionX, initialPositionY + cellSize));
+        level.add(new Spot(initialPositionX, initialPositionY + (2 * cellSize)));
     }
     @Test
     public void checkMoveShallReturnTrueIfNoObstacleHit() throws WinningException {

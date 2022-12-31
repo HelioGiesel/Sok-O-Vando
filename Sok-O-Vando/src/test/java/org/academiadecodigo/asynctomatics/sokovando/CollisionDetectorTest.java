@@ -6,6 +6,8 @@ import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -13,7 +15,7 @@ public class CollisionDetectorTest {
     private Player player;
     private Box movableBox;
     private Spot spot;
-    private final Position[] level = new Position[5];
+    private final ArrayList<Position> level = new  ArrayList<>();
     private final int cellSize = Position.CELLSIZE;
     private final int initialPositionX = cellSize;
     private final int initialPositionY = cellSize;
@@ -24,14 +26,14 @@ public class CollisionDetectorTest {
         movableBox = new Box(initialPositionX + cellSize, initialPositionY);
         spot = new Spot(initialPositionX * 3, initialPositionY * 3);
         // box at right
-        level[0] = this.movableBox;
+        level.add(this.movableBox);
         // 2 box at bottom
-        level[1] = new Box(initialPositionX, initialPositionY + cellSize);
-        level[2] = new Box(initialPositionX, initialPositionY + (cellSize * 2));
+        level.add(new Box(initialPositionX, initialPositionY + cellSize));
+        level.add(new Box(initialPositionX, initialPositionY + (cellSize * 2)));
         // wall at left
-        level[3] = new Wall(initialPositionX - cellSize, initialPositionY);
+        level.add(new Wall(initialPositionX - cellSize, initialPositionY));
         // spot to avoid winning exception
-        level[4] = spot;
+        level.add(spot);
     }
 
     @Test
