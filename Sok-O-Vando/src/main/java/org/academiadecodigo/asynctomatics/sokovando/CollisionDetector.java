@@ -2,65 +2,60 @@ package org.academiadecodigo.asynctomatics.sokovando;
 
 import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
-import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CollisionDetector {
+    Game game;
+    HashMap<String, ArrayList<Position>> gameObjectsMap;
+    Player player;
 
-    public static boolean isColliding(ArrayList<Position> gameObjects, Position movingObject, Directions direction) throws WinningException {
-
-        for (Position obstacle : gameObjects) {
-
-            if (obstacle != null) {
-
-                if ((obstacle.getX() == movingObject.getX()) && (obstacle.getY() == movingObject.getY())) {
-
-                    if (obstacle instanceof Wall) return true;
-
-                    if ((movingObject instanceof Box) && (obstacle instanceof Box)) return true;
-
-                    if ((movingObject instanceof Player) && (obstacle instanceof Box)) {
-
-                        return (!((Box) obstacle).checkMove(direction, gameObjects));
-
-                    }
-                }
-            }
-        }
-        return false;
+    public CollisionDetector(Game game, HashMap<String, ArrayList<Position>> gameObjectsMap, Player player) {
+        this.game = game;
+        this.gameObjectsMap = gameObjectsMap;
+        this.player = player;
     }
 
-    public static void checkSpots(ArrayList<Position> gameObjects) throws WinningException {
+    public CollisionDetectorResponse checkMovement(Directions direction) {
+        CollisionDetectorResponse response = new CollisionDetectorResponse();
 
-        //run through array, collect spots and boxes, check if they are on same position
+        Map<String, Position> next2ElementsByMove = getNext2Elements(direction);
 
-        LinkedList<Position> spotList = new LinkedList<>();
-        LinkedList<Position> boxList = new LinkedList<>();
-
-        for (Position element : gameObjects) {
-
-            if (element instanceof Box) boxList.add(element);
-            if (element instanceof Spot) spotList.add(element);
-
+        if (next2ElementsByMove.get("first") == null) {
+            response.playerCanMove = true;
+            return response;
         }
 
-        int validation = 0;
-
-        for (Position box : boxList) {
-            for (Position spot : spotList) {
-                if ((box.getY() == spot.getY()) && (box.getX() == spot.getX())) validation++;
-            }
+        if (next2ElementsByMove.get("first") instanceof Box && next2ElementsByMove.get("second") == null) {
+            response.setBoxCanMoveScenario(next2ElementsByMove.get("first"));
+            return response;
         }
 
-        if ((validation == spotList.size()) && (validation != 0)) {
+        return response;
+    }
 
-            for (Position gameObject : gameObjects) gameObject.deleteShape();
+    private Map<String, Position> getNext2Elements(Directions direction) {
+        Map<String, Position> next2ElementsByMove = new HashMap<>();
 
-            throw new WinningException();
+        GenericPosition firstMovePosition = new GenericPosition(player.getX(), player.getY());
+        Directions.setPositionNextCoordinatesByDirection(firstMovePosition, direction, 1);
 
-        }
+        GenericPosition secondMovePosition = new GenericPosition(player.getX(), player.getY());
+        Directions.setPositionNextCoordinatesByDirection(secondMovePosition, direction, 2);
+
+        gameObjectsMap.get("walls").forEach(element -> {
+            if (firstMovePosition.checkSamePosition(element)) next2ElementsByMove.put("first", element);
+            if (secondMovePosition.checkSamePosition(element)) next2ElementsByMove.put("second", element);
+        });
+
+        gameObjectsMap.get("boxes").forEach(element -> {
+            if (firstMovePosition.checkSamePosition(element)) next2ElementsByMove.put("first", element);
+            if (secondMovePosition.checkSamePosition(element)) next2ElementsByMove.put("second", element);
+        });
+
+        return next2ElementsByMove;
     }
 }
 

@@ -36,8 +36,16 @@ public abstract class Position {
         return this.elementShape;
     }
 
+    public Picture getShape() {
+        return this.elementShape;
+    }
+
     public void deleteShape() {
         this.elementShape.delete();
     };
+
+    public boolean checkSamePosition(Position comparedPosition) {
+        return this.x == comparedPosition.getX() && this.y == comparedPosition.getY();
+    }
 
 }

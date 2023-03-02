@@ -3,18 +3,18 @@ package org.academiadecodigo.asynctomatics.sokovando;
 import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.controlls.KeyboardListener;
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
-import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.academiadecodigo.asynctomatics.sokovando.levels.LevelContainer;
 import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
 
 public class Game {
     private int currentLevelIndex = 1;
     private final int numberOfLevels = 5; // TODO: change dynamically when loading all levels
-    private ArrayList<Position> currentLevel;
+    private HashMap<String, ArrayList<Position>> currentLevel;
     private Player player;
     private Picture background;
     private Picture startMenu;
@@ -22,11 +22,12 @@ public class Game {
     private Picture levelClear;
     private Picture levelClear600;
     private boolean started = false;
-    private final Sound menu = new Sound("/resources/startScreen.wav");
-    private final Sound gameCoin = new Sound("/resources/gamecoin.wav");
-    private final Sound main = new Sound("/resources/main.wav");
-    private final Sound laugh = new Sound("/resources/evilLaugh.wav");
-    private final Sound main2 = new Sound("/resources/level4_5.wav");
+    private CollisionDetector collisionDetector;
+    private final Sound menuMusic = new Sound("/resources/startScreen.wav");
+    private final Sound gameCoinSound = new Sound("/resources/gamecoin.wav");
+    private final Sound mainMusic = new Sound("/resources/main.wav");
+    private final Sound laughSound = new Sound("/resources/evilLaugh.wav");
+    private final Sound main2Music = new Sound("/resources/level4_5.wav");
 
     public Game() {
         KeyboardListener keyboard = new KeyboardListener();
@@ -40,43 +41,53 @@ public class Game {
     }
 
     private void loadLevel() {
-        currentLevel = new LevelContainer().getLevel(currentLevelIndex);
-        player = (Player) currentLevel.stream().filter(element -> element instanceof Player).findFirst().orElse(null);
-        if (player != null) player.drawPlayer();
+        LevelContainer levelContainer = new LevelContainer();
+        currentLevel = levelContainer.getLevel(currentLevelIndex);
+        player = levelContainer.getPlayer();
+        player.drawPlayer();
+        collisionDetector = new CollisionDetector(this, currentLevel, player);
     }
 
-    public void movePlayer(Directions directions) {
-        try {
-            if (currentLevelIndex <= numberOfLevels) {
-                switch (directions) {
-                    case UP:
-                        player.checkMove(Directions.UP, currentLevel);
-                        break;
+    public void movePlayer(Directions direction) {
+        if (currentLevelIndex > numberOfLevels) return;
 
-                    case DOWN:
-                        player.checkMove(Directions.DOWN, currentLevel);
-                        break;
+        CollisionDetectorResponse collisionResponse = collisionDetector.checkMovement(direction);
 
-                    case LEFT:
-                        player.checkMove(Directions.LEFT, currentLevel);
-                        break;
+        player.setPlayerIconDirection(direction);
 
-                    case RIGHT:
-                        player.checkMove(Directions.RIGHT, currentLevel);
-                        break;
-                }
-            }
-        } catch (WinningException ex) {
-
-            System.out.println("Won level " + currentLevelIndex);
-            player.deleteShape();
-            currentLevelIndex++;
-            levelTransition();
+        if (collisionResponse.playerCanMove) {
+            Directions.setPositionNextCoordinatesByDirection(player, direction, 1);
+            Directions.translatePositionShape(player, direction);
         }
+
+        if (collisionResponse.nextObstacleCanMove && collisionResponse.nextObstacle != null) {
+            Directions.setPositionNextCoordinatesByDirection(collisionResponse.nextObstacle, direction, 1);
+            Directions.translatePositionShape(collisionResponse.nextObstacle, direction);
+        }
+
+        checkBoxesOnSpots();
+    }
+
+    private void checkBoxesOnSpots() {
+        int numberOfBoxOnSpot = 0;
+
+        for (Position box : currentLevel.get("boxes")) {
+            for (Position spot : currentLevel.get("spots")) {
+                if (box.checkSamePosition(spot)) numberOfBoxOnSpot++;
+            }
+        }
+        if (numberOfBoxOnSpot == currentLevel.get("spots").size()) levelWon();
+    }
+
+    private void levelWon() {
+        System.out.println("Won level " + currentLevelIndex);
+        player.deleteShape();
+        currentLevelIndex++;
+        levelTransition();
     }
 
     public void restartLevel() {
-        for (Position element : currentLevel) element.deleteShape();
+        currentLevel.forEach((key, value) -> value.forEach(Position::deleteShape));
         player.deleteShape();
         init();
     }
@@ -86,8 +97,7 @@ public class Game {
     }
 
     public void initMenu() {
-
-        menu.play(true);
+        menuMusic.play(true);
 
         startMenu = new Picture(0, 0, "resources/startMenu.png");
         startMenu.draw();
@@ -95,46 +105,34 @@ public class Game {
 
 
     public void afterInitMenu() {
-        this.deleteStartMenu();
-        menu.stop();
-        gameCoin.play(true);
+        startMenu.delete();
+        menuMusic.stop();
+        gameCoinSound.play(true);
         levelTransition();
-        main.play(true);
+        mainMusic.play(true);
         this.setStarted(true);
     }
 
-    public void deleteStartMenu() {
-        startMenu.delete();
-    }
-
     public void levelTransition() {
-        switch (currentLevelIndex) {
-
-            case 2:
-
-            case 3:
-                player = null;
-                levelClear = new Picture(0, 0, "resources/levelClear550.png");
-                levelClear.draw();
-                setStarted(false);
-                Timer t1 = new java.util.Timer();
-                t1.schedule(
-                        new java.util.TimerTask() {
-                            @Override
-                            public void run() {
-                                levelClear.delete();
-                                init();
-                                t1.cancel();
-                                setStarted(true);
-                            }
-                        },
-                        3000
-                );
-                break;
-
-            default:
-                init();
-                break;
+        if (currentLevelIndex == 2 || currentLevelIndex == 3) {
+            player = null;
+            levelClear = new Picture(0, 0, "resources/levelClear550.png");
+            levelClear.draw();
+            setStarted(false);
+            Timer t1 = new java.util.Timer();
+            t1.schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            levelClear.delete();
+                            init();
+                            t1.cancel();
+                            setStarted(true);
+                        }
+                    },3000
+            );
+        } else {
+            init();
         }
     }
 
@@ -150,9 +148,9 @@ public class Game {
 
             case 4:
                 player = null;
-                main.stop();
-                main2.stop();
-                laugh.play(true);
+                mainMusic.stop();
+                main2Music.stop();
+                laughSound.play(true);
                 //Keep transition when level is restarted
                 level4Transition = new Picture(0, 0, "resources/level4Transition.png");
                 level4Transition.draw();
@@ -163,7 +161,7 @@ public class Game {
                             @Override
                             public void run() {
                                 level4Transition.delete();
-                                main2.play(true);
+                                main2Music.play(true);
                                 background = new Picture(0, 0, "resources/background600.png");
                                 background.draw();
                                 loadLevel();
@@ -201,7 +199,7 @@ public class Game {
         if (currentLevelIndex > numberOfLevels) {
             System.out.println("You are a beast!! You deserve a clap from Leandro and one 'Até já' from you know who");
             Picture win = new Picture(0, 0, "/resources/youwin.png");
-            player.getPlayerShape().delete();
+            player.getShape().delete();
             win.draw();
         }
     }
