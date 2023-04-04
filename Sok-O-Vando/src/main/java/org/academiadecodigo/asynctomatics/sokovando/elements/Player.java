@@ -1,99 +1,43 @@
-
 package org.academiadecodigo.asynctomatics.sokovando.elements;
 
-
-import org.academiadecodigo.asynctomatics.sokovando.CollisionDetector;
 import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
-import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player extends Position {
 
     Picture playerShape;
-    Position[] level;
-
+    String imageResourcePath;
 
     public Player(int x, int y) {
         super(x, y);
-        this.playerShape = super.initShape("resources/playerDownIcon.png");
+        imageResourcePath = "resources/playerDownIcon.png";
     }
 
-    public Picture getPlayerShape() {
-        return playerShape;
+    public void drawPlayer() {
+        this.playerShape = super.initShape(imageResourcePath);
     }
 
-    public String getPlayerIconDirection(Directions direction) {
+    public void setPlayerIconDirection(Directions direction) {
+        deleteShape();
+
         switch (direction) {
             case UP:
-                return "resources/playerUpIcon.png";
+                imageResourcePath = "resources/playerUpIcon.png";
+                break;
 
             case LEFT:
-                return "resources/playerLeftIcon.png";
+                imageResourcePath = "resources/playerLeftIcon.png";
+                break;
 
             case RIGHT:
-                return "resources/playerRightIcon.png";
+                imageResourcePath = "resources/playerRightIcon.png";
+                break;
 
             default:
-                return "resources/playerDownIcon.png";
-        }
-    }
-
-
-    public void checkMove(Directions direction, Position[] level) throws WinningException {
-
-        this.level = level;
-
-        Player ghostPosition = new Player(playerShape.getX(), playerShape.getY());
-
-        boolean canMove = false;
-
-        switch (direction) {
-            case UP:
-                ghostPosition.setY(getY() - CELLSIZE);
-                canMove = !(CollisionDetector.isColliding(level, ghostPosition, direction));
-                break;
-            case DOWN:
-                ghostPosition.setY(getY() + CELLSIZE);
-                canMove = !(CollisionDetector.isColliding(level, ghostPosition, direction));
-                break;
-            case LEFT:
-                ghostPosition.setX(getX() - CELLSIZE);
-                canMove = !(CollisionDetector.isColliding(level, ghostPosition, direction));
-                break;
-            case RIGHT:
-                ghostPosition.setX(getX() + CELLSIZE);
-                canMove = !(CollisionDetector.isColliding(level, ghostPosition, direction));
+                imageResourcePath = "resources/playerDownIcon.png";
                 break;
         }
 
-        ghostPosition.playerShape.delete();
-
-        this.playerShape.load(getPlayerIconDirection(direction));
-
-        playerShape.draw();
-
-
-        if (canMove) this.move(direction);
-    }
-
-    public void move(Directions direction) {
-        switch (direction) {
-            case UP:
-                this.setY(getY() - CELLSIZE);
-                this.playerShape.translate(0, -CELLSIZE);
-                break;
-            case DOWN:
-                this.setY(getY() + CELLSIZE);
-                this.playerShape.translate(0, CELLSIZE);
-                break;
-            case LEFT:
-                this.setX(getX() - CELLSIZE);
-                this.playerShape.translate(-CELLSIZE, 0);
-                break;
-            case RIGHT:
-                this.setX(getX() + CELLSIZE);
-                this.playerShape.translate(CELLSIZE, 0);
-                break;
-        }
+        drawPlayer();
     }
 }

@@ -32,7 +32,7 @@ public class KeyboardListenerTest {
 
         Game game = mock(Game.class);
         keyboardListener.setGame(game);
-        when(game.isStarted()).thenReturn(true);
+        game.started = true;
 
         // when
         keyboardListener.keyReleased(keyboardEvent);
@@ -50,7 +50,7 @@ public class KeyboardListenerTest {
 
         Game game = mock(Game.class);
         keyboardListener.setGame(game);
-        when(game.isStarted()).thenReturn(true);
+        game.started = true;
 
         // when
         keyboardListener.keyReleased(keyboardEvent);
@@ -73,7 +73,7 @@ public class KeyboardListenerTest {
 
         Game game = mock(Game.class);
         keyboardListener.setGame(game);
-        when(game.isStarted()).thenReturn(true);
+        game.started = true;
 
         // when
         keyboardListener.keyReleased(keyboardEvent);
@@ -95,7 +95,7 @@ public class KeyboardListenerTest {
 
         Game game = mock(Game.class);
         keyboardListener.setGame(game);
-        when(game.isStarted()).thenReturn(true);
+        game.started = true;
 
         // when
         keyboardListener.keyReleased(keyboardEvent);
@@ -117,7 +117,7 @@ public class KeyboardListenerTest {
 
         Game game = mock(Game.class);
         keyboardListener.setGame(game);
-        when(game.isStarted()).thenReturn(true);
+        game.started = true;
 
         // when
         keyboardListener.keyReleased(keyboardEvent);
@@ -139,7 +139,7 @@ public class KeyboardListenerTest {
 
         Game game = mock(Game.class);
         keyboardListener.setGame(game);
-        when(game.isStarted()).thenReturn(true);
+        game.started = true;
 
         // when
         keyboardListener.keyReleased(keyboardEvent);
@@ -161,20 +161,18 @@ public class KeyboardListenerTest {
 
         Game game = mock(Game.class);
         keyboardListener.setGame(game);
-        when(game.isStarted()).thenReturn(false);
+        game.started = false;
 
         // when
         keyboardListener.keyReleased(keyboardEvent);
 
         // then
-        verify(game).setStarted(true);
         verify(game, never()).movePlayer(Directions.DOWN);
         verify(game, never()).movePlayer(Directions.LEFT);
         verify(game, never()).movePlayer(Directions.RIGHT);
         verify(game, never()).movePlayer(Directions.UP);
         verify(game, never()).restartLevel();
     }
-
 }
 
 

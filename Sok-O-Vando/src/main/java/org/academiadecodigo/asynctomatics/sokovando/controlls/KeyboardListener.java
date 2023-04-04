@@ -8,7 +8,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class KeyboardListener implements KeyboardHandler {
-
     private Game game;
     private TerminationSwitch terminationSwitch;
 
@@ -21,7 +20,6 @@ public class KeyboardListener implements KeyboardHandler {
     }
 
     public void setup() {
-
         Keyboard keyboard = new Keyboard(this);
 
         int[] keyNumber = {
@@ -55,7 +53,7 @@ public class KeyboardListener implements KeyboardHandler {
             terminationSwitch.terminateGame();
         }
 
-        if (game.isStarted()) {
+        if (game.started) {
             switch (keyboardEvent.getKey()) {
                 case KeyboardEvent.KEY_UP:
                     game.movePlayer(Directions.UP);

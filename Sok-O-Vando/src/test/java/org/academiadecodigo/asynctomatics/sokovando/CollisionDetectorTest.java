@@ -2,18 +2,23 @@ package org.academiadecodigo.asynctomatics.sokovando;
 
 import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
-import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static org.junit.Assert.*;
 
 public class CollisionDetectorTest {
     private Player player;
     private Box movableBox;
     private Spot spot;
-    private final Position[] level = new Position[5];
+    private HashMap<String, ArrayList<Position>> levelElementsMap = new HashMap<>();
+    private CollisionDetector collisionDetector;
+    private final ArrayList<Position> boxes = new  ArrayList<>();
+    private final ArrayList<Position> walls = new  ArrayList<>();
+    private final ArrayList<Position> spots = new  ArrayList<>();
     private final int cellSize = Position.CELLSIZE;
     private final int initialPositionX = cellSize;
     private final int initialPositionY = cellSize;
@@ -21,98 +26,71 @@ public class CollisionDetectorTest {
     @Before
     public void setup() {
         player = new Player(initialPositionX, initialPositionY);
-        movableBox = new Box(initialPositionX + cellSize, initialPositionY);
+        // spot to avoid winning
         spot = new Spot(initialPositionX * 3, initialPositionY * 3);
+        spots.add(spot);
         // box at right
-        level[0] = this.movableBox;
+        movableBox = new Box(initialPositionX + cellSize, initialPositionY);
+        boxes.add(movableBox);
         // 2 box at bottom
-        level[1] = new Box(initialPositionX, initialPositionY + cellSize);
-        level[2] = new Box(initialPositionX, initialPositionY + (cellSize * 2));
+        boxes.add(new Box(initialPositionX, initialPositionY + cellSize));
+        boxes.add(new Box(initialPositionX, initialPositionY + (cellSize * 2)));
         // wall at left
-        level[3] = new Wall(initialPositionX - cellSize, initialPositionY);
-        // spot to avoid winning exception
-        level[4] = spot;
+        walls.add(new Wall(initialPositionX - cellSize, initialPositionY));
+
+        levelElementsMap.put("boxes", boxes);
+        levelElementsMap.put("spots", spots);
+        levelElementsMap.put("walls", walls);
+
+        collisionDetector = new CollisionDetector(new Game(), levelElementsMap, player);
     }
 
     @Test
-    public void isCollidingShallReturnFalseIfNoObstaclesHit() throws WinningException {
+    public void collisionResponseShallReturnTrueForPlayerMoveWhenNotColliding() {
         // given
         player.setY(initialPositionY - cellSize);
 
         // when
-        boolean result = CollisionDetector.isColliding(level, player, Directions.UP);
+        CollisionDetectorResponse result = collisionDetector.checkMovement(Directions.UP);
 
         // then
-        assertFalse(result);
+        assertTrue(result.playerCanMove);
     }
 
     @Test
-    public void isCollidingShallReturnFalseIfPlayerHitMovableBox() throws WinningException {
+    public void collisionResponseShallReturnTrueForMovementsWhenHittingMovableBox() {
         // given
-        player.setX(initialPositionX + cellSize);
+        player.setX(initialPositionX);
 
         // when
-        boolean result = CollisionDetector.isColliding(level, player, Directions.RIGHT);
+        CollisionDetectorResponse result = collisionDetector.checkMovement(Directions.RIGHT);
 
         // then
-        assertFalse(result);
+        assertTrue(result.playerCanMove);
+        assertTrue(result.nextObstacleCanMove);
+        assertNotNull(result.nextObstacle);
     }
 
     @Test
-    public void isCollidingShallReturnTrueIfPlayerHitUnmovableBox() throws WinningException {
+    public void collisionResponseShallReturnFalseForMovementIfHitUnmovableBox() {
         // given
-        player.setY(initialPositionY + cellSize);
+        player.setY(initialPositionY);
 
         // when
-        boolean result = CollisionDetector.isColliding(level, player, Directions.DOWN);
+        CollisionDetectorResponse result = collisionDetector.checkMovement(Directions.DOWN);
 
         // then
-        System.out.println(result);
-        assertTrue(result);
+        assertFalse(result.playerCanMove);
     }
     @Test
-    public void isCollidingShallReturnTrueIfHitWall() throws WinningException {
+    public void collisionResponseShallReturnFalseForMovementIfHitWall() {
         // given
-        player.setX(initialPositionX - cellSize);
+        player.setX(initialPositionX);
 
         // when
-        boolean result = CollisionDetector.isColliding(level, player, Directions.LEFT);
+        CollisionDetectorResponse result = collisionDetector.checkMovement(Directions.LEFT);
 
         // then
-        assertTrue(result);
-    }
-
-    @Test
-    public void checkSpotsShallThrowExceptionWhenAllSpotsHaveBoxes() {
-        // given
-        movableBox.setX(spot.getX());
-        movableBox.setY(spot.getY());
-        boolean result = false;
-
-        // when
-        try {
-            CollisionDetector.checkSpots(level);
-        } catch(WinningException exception) {
-            result = true;
-        }
-
-        // then
-        assertTrue(result);
-    }
-
-    @Test
-    public void checkSpotsShallNotThrowExceptionWhenNotAllSpotsHaveBoxes() {
-        // given
-        boolean result = false;
-
-        // when
-        try {
-            CollisionDetector.checkSpots(level);
-        } catch(WinningException exception) {
-            result = true;
-        }
-
-        // then
-        assertFalse(result);
+        assertFalse(result.playerCanMove);
     }
 }
