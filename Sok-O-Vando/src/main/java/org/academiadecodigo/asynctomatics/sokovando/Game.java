@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Timer;
 
 public class Game {
+    public boolean started = false;
+
     private int currentLevelIndex = 1;
     private final int numberOfLevels = 5; // TODO: change dynamically when loading all levels
     private HashMap<String, ArrayList<Position>> currentLevel;
@@ -21,7 +23,6 @@ public class Game {
     private Picture level4Transition;
     private Picture levelClear;
     private Picture levelClear600;
-    private boolean started = false;
     private CollisionDetector collisionDetector;
     private final Sound menuMusic = new Sound("/resources/startScreen.wav");
     private final Sound gameCoinSound = new Sound("/resources/gamecoin.wav");
@@ -34,10 +35,6 @@ public class Game {
         keyboard.setTerminationSwitch(new TerminationSwitch());
         keyboard.setGame(this);
         keyboard.setup();
-    }
-
-    public boolean isStarted() {
-        return started;
     }
 
     private void loadLevel() {
@@ -53,6 +50,7 @@ public class Game {
 
         CollisionDetectorResponse collisionResponse = collisionDetector.checkMovement(direction);
 
+        // even blocked, player icon shall reflect direction
         player.setPlayerIconDirection(direction);
 
         if (collisionResponse.playerCanMove) {
@@ -92,10 +90,6 @@ public class Game {
         init();
     }
 
-    public void setStarted(boolean started) {
-        this.started = started;
-    }
-
     public void initMenu() {
         menuMusic.play(true);
 
@@ -110,7 +104,7 @@ public class Game {
         gameCoinSound.play(true);
         levelTransition();
         mainMusic.play(true);
-        this.setStarted(true);
+        started = true;
     }
 
     public void levelTransition() {
@@ -118,7 +112,7 @@ public class Game {
             player = null;
             levelClear = new Picture(0, 0, "resources/levelClear550.png");
             levelClear.draw();
-            setStarted(false);
+            started = false;
             Timer t1 = new java.util.Timer();
             t1.schedule(
                     new java.util.TimerTask() {
@@ -127,7 +121,7 @@ public class Game {
                             levelClear.delete();
                             init();
                             t1.cancel();
-                            setStarted(true);
+                            started = true;
                         }
                     },3000
             );
@@ -154,7 +148,7 @@ public class Game {
                 //Keep transition when level is restarted
                 level4Transition = new Picture(0, 0, "resources/level4Transition.png");
                 level4Transition.draw();
-                setStarted(false);
+                started = false;
                 Timer t3 = new java.util.Timer();
                 t3.schedule(
                         new java.util.TimerTask() {
@@ -166,7 +160,7 @@ public class Game {
                                 background.draw();
                                 loadLevel();
                                 t3.cancel();
-                                setStarted(true);
+                                started = true;
                             }
                         },
                         5000
@@ -177,7 +171,7 @@ public class Game {
                 player = null;
                 levelClear600 = new Picture(0, 0, "resources/levelClear600.png");
                 levelClear600.draw();
-                setStarted(false);
+                started = false;
                 Timer t4 = new java.util.Timer();
                 t4.schedule(
                         new java.util.TimerTask() {
@@ -188,7 +182,7 @@ public class Game {
                                 background.draw();
                                 loadLevel();
                                 t4.cancel();
-                                setStarted(true);
+                                started = true;
                             }
                         },
                         3000

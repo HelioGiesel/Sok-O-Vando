@@ -47,5 +47,4 @@ public abstract class Position {
     public boolean checkSamePosition(Position comparedPosition) {
         return this.x == comparedPosition.getX() && this.y == comparedPosition.getY();
     }
-
 }

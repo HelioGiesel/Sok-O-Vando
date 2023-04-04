@@ -2,7 +2,6 @@ package org.academiadecodigo.asynctomatics.sokovando;
 
 import org.academiadecodigo.asynctomatics.sokovando.controlls.Directions;
 import org.academiadecodigo.asynctomatics.sokovando.elements.*;
-import org.academiadecodigo.asynctomatics.sokovando.exceptions.WinningException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +25,6 @@ public class CollisionDetectorTest {
 
     @Before
     public void setup() {
-
         player = new Player(initialPositionX, initialPositionY);
         // spot to avoid winning
         spot = new Spot(initialPositionX * 3, initialPositionY * 3);
@@ -62,7 +60,7 @@ public class CollisionDetectorTest {
     @Test
     public void collisionResponseShallReturnTrueForMovementsWhenHittingMovableBox() {
         // given
-        player.setX(initialPositionX + cellSize);
+        player.setX(initialPositionX);
 
         // when
         CollisionDetectorResponse result = collisionDetector.checkMovement(Directions.RIGHT);
@@ -74,9 +72,9 @@ public class CollisionDetectorTest {
     }
 
     @Test
-    public void collisionResponseShallReturnFalseForMovementIfHitUnmovableBox() throws WinningException {
+    public void collisionResponseShallReturnFalseForMovementIfHitUnmovableBox() {
         // given
-        player.setY(initialPositionY + cellSize);
+        player.setY(initialPositionY);
 
         // when
         CollisionDetectorResponse result = collisionDetector.checkMovement(Directions.DOWN);
@@ -85,9 +83,9 @@ public class CollisionDetectorTest {
         assertFalse(result.playerCanMove);
     }
     @Test
-    public void collisionResponseShallReturnFalseForMovementIfHitWall() throws WinningException {
+    public void collisionResponseShallReturnFalseForMovementIfHitWall() {
         // given
-        player.setX(initialPositionX - cellSize);
+        player.setX(initialPositionX);
 
         // when
         CollisionDetectorResponse result = collisionDetector.checkMovement(Directions.LEFT);
